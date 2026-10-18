@@ -736,6 +736,8 @@ GitHub Actions con lint, typecheck, tests, build de la landing, `level:validate`
 | 2026-10-18 | TypeScript                 | ~6.0.3 (template Expo 58). No TS 7.                                                                                                                         |
 | 2026-10-18 | Blender                    | 5.2.2 LTS instalado.                                                                                                                                        |
 | 2026-10-18 | Flujo de trabajo           | Tareas clasificadas Bajo/Medio/Alto y delegadas a sesiones `low-dev` / `mid-dev` / `high-dev`; `planner` orquesta. Documentación de librerías vía Context7. |
+| 2026-10-18 | Contrato `scenario.json`   | Esquema Zod en `@apocalipticba/shared` (Hito 2). Spawns por encuentro `SPAWN_<enc>_<n>`, jugador `SPAWN_player_start_<n>`. Interactuables `INT_(note        | locked | hold | climb | gate | pickup)_<id>`. Marcador de objetivo `MRK_<id>`. `PICK_<item>_<n>`con item igual al tipo.`BG_Skyline` solo en preload/unload. |
+| 2026-10-18 | Formato de documentación   | Toda la carpeta `docs/` pasa por `pnpm format` (Prettier).                                                                                                  |
 
 ---
 

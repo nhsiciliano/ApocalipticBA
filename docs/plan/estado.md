@@ -6,7 +6,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | ---- | -------------------- | ---------- | -------- | --------- | ------------------------------- | ---------- |
 | 0    | Bootstrap del repo   | Bajo       | low-dev  | Hecho     | `1c11fee`                       | 2026-10-18 |
 | 1    | Monorepo y tooling   | Bajo       | low-dev  | Hecho     | `24c84f6`, `0d4a39b`, `267e7d5` | 2026-10-18 |
-| 2    | `packages/shared`    | Bajo       | low-dev  | Pendiente | —                               | —          |
+| 2    | `packages/shared`    | Bajo       | low-dev  | Hecho     | `29ca6d7`, `51caac9`, `264cca2` | 2026-10-18 |
 | 3    | `packages/game-core` | Medio      | mid-dev  | Pendiente | —                               | —          |
 | 4    | Supabase             | Medio      | mid-dev  | Pendiente | —                               | —          |
 | 5    | Landing              | Medio      | mid-dev  | Pendiente | —                               | —          |
