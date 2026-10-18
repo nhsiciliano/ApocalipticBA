@@ -1,0 +1,18 @@
+pnpm-lock.yaml
+dist
+build
+coverage
+.turbo
+.astro
+.expo
+docs/references
+packages/assets
+
+# Docs escritos por la sesión planner: no se reformatean. Solo docs/decisions se chequea.
+docs/*
+!docs/decisions
+
+# Archivos de terceros / generados por herramientas: no se reformatean
+.agents
+.claude
+skills-lock.json

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalDependencies": ["pnpm-lock.yaml", "packages/config/tsconfig.base.json"],
+  "globalPassThroughEnv": [],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".astro/**", "build/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "format": {}
+  }
+}

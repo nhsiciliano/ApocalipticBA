@@ -1,11 +1,35 @@
 {
   "name": "apocalipticba",
   "private": true,
+  "type": "module",
   "license": "UNLICENSED",
   "packageManager": "pnpm@12.14.0",
   "engines": {
     "node": ">=24.3.0",
     "pnpm": ">=12"
   },
-  "scripts": {}
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "level:export": "node tools/run-workspace-script.mjs @apocalipticba/level-tools export 8",
+    "level:validate": "node tools/run-workspace-script.mjs @apocalipticba/level-tools validate 8",
+    "assets:optimize": "node tools/run-workspace-script.mjs @apocalipticba/asset-tools optimize 8",
+    "db:start": "node tools/run-workspace-script.mjs @apocalipticba/supabase start 4",
+    "db:reset": "node tools/run-workspace-script.mjs @apocalipticba/supabase reset 4",
+    "db:types": "node tools/run-workspace-script.mjs @apocalipticba/supabase types 4"
+  },
+  "devDependencies": {
+    "@apocalipticba/config": "workspace:*",
+    "@types/node": "24.19.2",
+    "eslint": "10.13.0",
+    "prettier": "3.9.10",
+    "turbo": "2.11.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2"
+  }
 }

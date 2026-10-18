@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+  - tools/*
+
+# pnpm 11+ solo lee auth/registry desde .npmrc: el resto de la config vive acá.
+engineStrict: true
+autoInstallPeers: true
+
+# Scripts de build de dependencias: lista explícita (todo lo no listado falla la instalación).
+allowBuilds:
+  # Solo verifica el binario nativo, que ya viene como paquete opcional por plataforma.
+  unrs-resolver: false
