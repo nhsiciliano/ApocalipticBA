@@ -28,6 +28,13 @@ export type {
   ScenarioSummary,
 } from './events/game-events';
 
+export { DEFAULT_GAME_SETTINGS, MAX_HEALTH } from './game/settings';
+export type { GameSettings, Locale } from './game/settings';
+export type { CheckpointSnapshot } from './game/snapshot';
+
+export { DEFAULT_NODE_RADIUS, expectedNodesForZone, sceneNodeKindForId } from './world/scene-nodes';
+export type { SceneNode, SceneNodeKind } from './world/scene-nodes';
+
 export type { Aabb } from './math/aabb';
 export { add, distance, length, lerp, scale, sub, vec3, ZERO } from './math/vec3';
 export type { Vec3 } from './math/vec3';
