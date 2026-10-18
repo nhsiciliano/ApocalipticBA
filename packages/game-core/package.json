@@ -1,0 +1,30 @@
+{
+  "name": "@apocalipticba/game-core",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Simulación del juego: loop de timestep fijo, ECS, sistemas de nivel y contrato con el host",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@apocalipticba/shared": "workspace:*",
+    "miniplex": "2.0.0"
+  },
+  "devDependencies": {
+    "@apocalipticba/config": "workspace:*",
+    "@vitest/coverage-v8": "5.0.5",
+    "eslint": "10.13.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  }
+}
