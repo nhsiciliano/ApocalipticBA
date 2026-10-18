@@ -13,6 +13,7 @@ El juego se presenta y se ofrece mediante una **landing web**. No hay versión j
 **Tarea actual:** ejecutar la **Fase 0** (sección 7). Las secciones 1 a 6 son el contexto completo del producto y las decisiones ya tomadas. Respetalas aunque la Fase 0 no las implemente todas.
 
 **Reglas generales:**
+
 - Antes de instalar cualquier dependencia, verificá en la documentación oficial actualizada cuál es la versión estable vigente y su compatibilidad con Expo y React Native. Fijá versiones exactas.
 - Los puntos marcados `[A DEFINIR]` no bloquean la Fase 0. Usá el valor por defecto indicado en la sección 8 y dejalo registrado.
 - Cada decisión técnica relevante se documenta como ADR en `docs/decisions/`.
@@ -24,6 +25,7 @@ El juego se presenta y se ofrece mediante una **landing web**. No hay versión j
 ### 1.1 Tono visual
 
 **Cel-shading estilo cómic**, inspirado en la estética de Borderlands (referencia de estilo, no de contenido):
+
 - Contornos de tinta negros y gruesos en siluetas y bordes de objetos.
 - Sombreado en 2–3 bandas duras, sin degradados suaves.
 - Texturas pintadas a mano con trazos de tinta y hatching integrados en la textura.
@@ -36,21 +38,23 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
 
 **Paleta del meteorito:** rojo intenso con núcleo anaranjado incandescente. Es el único color saturado y emisivo del juego, y siempre se lee como "contaminación".
 
-| Uso | Color |
-|---|---|
-| Núcleo emisivo | #FF3B1F |
-| Glow / halo | #FF6A3D |
-| Medio (vetas, grietas) | #C4160C |
-| Oscuro (zonas quemadas) | #4A0806 |
+| Uso                                  | Color               |
+| ------------------------------------ | ------------------- |
+| Núcleo emisivo                       | #FF3B1F             |
+| Glow / halo                          | #FF6A3D             |
+| Medio (vetas, grietas)               | #C4160C             |
+| Oscuro (zonas quemadas)              | #4A0806             |
 | Tinte de cielo y niebla post-impacto | ~#8A3A2E al 30–40 % |
 
 **Aplicaciones del rojo meteorito:**
+
 - Fragmentos con grietas incandescentes.
 - Ojos y venas brillantes en los zombies, más intensos en los Corredores.
 - Cielo y niebla teñidos en exteriores.
 - En interiores, el rojo entra solo como luz por ventanas y vitrales.
 
 **Separación del lenguaje de daño:**
+
 - Daño recibido: viñeta oscura, desaturación y flechas direccionales blancas. Nunca un flash rojo plano.
 - Sangre: rojo oscuro y mate (#5C0F0F), nunca emisivo.
 
@@ -80,6 +84,7 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
 **Licencia geográfica:** estación, plaza e iglesia se compactan en un recorrido continuo y legible. No hace falta respetar distancias ni orientación reales. Los edificios son reinterpretaciones estilizadas, no réplicas exactas.
 
 **Referencias:**
+
 - Imágenes en `docs/references/escenario-01/`: `01-estacion-exterior`, `02-estacion-hall`, `03-plaza`, `04-iglesia`. Las coloca el usuario.
 - Son de uso interno exclusivamente: no se publican ni se usan como input de generación de assets.
 
@@ -97,13 +102,13 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
 
 #### Zonas
 
-| # | Zona | Objetivo | Enemigos | Introduce |
-|---|---|---|---|---|
-| 1 | Hall de la estación | Leer la carta, juntar armas e ítems, salir | Ninguno (susto guionado opcional, sin combate) | Moverse, mirar, interactuar, recoger, cambiar de arma, recargar, leer notas, linterna |
-| 2 | Plaza | Cruzar hasta la iglesia | Comunes en grupos crecientes | Combate, headshots, munición, coberturas |
-| 3 | Frente de la iglesia | Entrar → reja cerrada | Pocos comunes | Bloqueo y cambio de objetivo |
-| 4 | Lateral izquierdo de la iglesia | Llegar a la puerta trasera | Corredores y comunes | Enemigo rápido, emboscadas, trepar, interacción sostenida |
-| 5 | Interior de la iglesia | Encontrar la segunda carta | Pocos o ninguno | Exploración y cierre narrativo |
+| #   | Zona                            | Objetivo                                   | Enemigos                                       | Introduce                                                                             |
+| --- | ------------------------------- | ------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
+| 1   | Hall de la estación             | Leer la carta, juntar armas e ítems, salir | Ninguno (susto guionado opcional, sin combate) | Moverse, mirar, interactuar, recoger, cambiar de arma, recargar, leer notas, linterna |
+| 2   | Plaza                           | Cruzar hasta la iglesia                    | Comunes en grupos crecientes                   | Combate, headshots, munición, coberturas                                              |
+| 3   | Frente de la iglesia            | Entrar → reja cerrada                      | Pocos comunes                                  | Bloqueo y cambio de objetivo                                                          |
+| 4   | Lateral izquierdo de la iglesia | Llegar a la puerta trasera                 | Corredores y comunes                           | Enemigo rápido, emboscadas, trepar, interacción sostenida                             |
+| 5   | Interior de la iglesia          | Encontrar la segunda carta                 | Pocos o ninguno                                | Exploración y cierre narrativo                                                        |
 
 #### Zona 1 — Hall de la estación
 
@@ -171,6 +176,7 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
   - Faroles intermitentes.
 
 **Beats:**
+
 - **4a — Esquina:**
   - `CHK_4a` al doblar la esquina.
   - Vista larga y recta. Un Corredor aparece al fondo y carga de frente, sin coberturas en el medio.
@@ -192,6 +198,7 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
   - Al abrirse, la puerta se cierra detrás del jugador.
 
 **Encuentros:**
+
 - `enc_4a`: 1 Corredor guionado + 2 comunes.
 - `enc_4b_1` a `enc_4b_3`: 1 Corredor + 1–2 comunes cada uno.
 - `enc_4d`: 6–8 comunes + 3–4 Corredores, en 2 tandas.
@@ -209,6 +216,7 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
 > Hijo: las cosas se complicaron todavía más. Una horda de zombies rodeó la iglesia y tuvimos que escaparnos por atrás, hacia la boca del subte. Era el camino más seguro. Logramos juntar algo de agua y algunas armas. Nos enteramos de que en la estación Retiro hay un grupo numeroso de civiles armados y vamos a intentar unirnos a ellos. Vamos a tratar de llegar por el subte. En cuanto pueda juntar un grupo armado y fuerte, voy a ir a buscarte. Intentá mantenerte a salvo. Papá.
 
 **Beat final:**
+
 1. El objetivo cambia a "Llegar a la boca del subte".
 2. Por un vitral roto se ve a lo lejos la boca del subte bajo el cielo rojo, con siluetas de la horda y gruñidos en aumento.
 3. Fundido a negro y resumen del escenario: tiempo, bajas, precisión, headshots y notas encontradas.
@@ -223,6 +231,7 @@ Identidad porteña: fileteado, adoquines, lajas, faroles, palos borrachos, carte
 ### 1.5 Sistemas de nivel y narrativa
 
 Implementados en `game-core` y data-driven, a partir de un `scenario.json` por escenario:
+
 - **Objetivos:** lista secuencial con texto en el HUD y marcador opcional.
 - **Triggers:** volúmenes que disparan eventos (encuentro, objetivo, checkpoint, sonido, texto).
 - **Interactuables:**
@@ -363,6 +372,7 @@ apocalipticba/
 - **Consumo:** la app usa solo `dist/`.
 
 **Lista de assets del Escenario 1** (se genera por tandas en la Fase 1, salvo el lote de prueba de la Fase 0):
+
 - **Personajes riggeados:**
   - Zombie común: vecino porteño con ropa de calle.
   - Zombie corredor: delgado y encorvado.
@@ -409,6 +419,7 @@ apocalipticba/
 ### 2.6 Construcción de niveles con Blender
 
 **Flujo de trabajo:**
+
 1. **Blockout (greybox):** generado por el agente con scripts `bpy` en Blender headless, a escala 1 unidad = 1 m.
 2. **Playtest del blockout en la app.**
 3. **Pase de arte:** reemplazar el greybox por piezas modulares, manteniendo colisiones y marcadores.
@@ -418,6 +429,7 @@ apocalipticba/
 `Z1_Hall`, `Z2_Plaza`, `Z3_Frente`, `Z4_Lateral`, `Z5_Interior`, `BG_Skyline`.
 
 **Convenciones de nombres:**
+
 - `COL_` → colisión: va al BVH y no se renderiza.
 - `COL_oneway_<id>` → bloqueo de un solo sentido.
 - `TRG_<id>` → trigger.
@@ -492,19 +504,19 @@ apocalipticba/
 
 ## 5. Base de datos
 
-| Tabla | Campos clave |
-|---|---|
-| auth.users | gestionada por Supabase Auth |
-| profiles | user_id, display_name, country, settings (jsonb), created_at |
-| scenarios | id, slug, name, order, is_active |
-| weapons | id, slug, name, base_stats (jsonb) |
-| player_progress | user_id, scenario_id, best_time_ms, completed, notes_found (jsonb), updated_at |
-| player_unlocks | user_id, item_type, item_id, unlocked_at |
-| game_sessions | id, user_id, scenario_id, app_version, platform, started_at, ended_at, token_hash |
-| scores | id, session_id, user_id, scenario_id, score, duration_ms, kills, accuracy, headshots, validated, created_at |
-| remote_config | key, value (jsonb), platform, min_app_version |
-| waitlist | email, locale, source, created_at |
-| telemetry_events | id, session_id, type, payload (jsonb), created_at |
+| Tabla            | Campos clave                                                                                                |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- |
+| auth.users       | gestionada por Supabase Auth                                                                                |
+| profiles         | user_id, display_name, country, settings (jsonb), created_at                                                |
+| scenarios        | id, slug, name, order, is_active                                                                            |
+| weapons          | id, slug, name, base_stats (jsonb)                                                                          |
+| player_progress  | user_id, scenario_id, best_time_ms, completed, notes_found (jsonb), updated_at                              |
+| player_unlocks   | user_id, item_type, item_id, unlocked_at                                                                    |
+| game_sessions    | id, user_id, scenario_id, app_version, platform, started_at, ended_at, token_hash                           |
+| scores           | id, session_id, user_id, scenario_id, score, duration_ms, kills, accuracy, headshots, validated, created_at |
+| remote_config    | key, value (jsonb), platform, min_app_version                                                               |
+| waitlist         | email, locale, source, created_at                                                                           |
+| telemetry_events | id, session_id, type, payload (jsonb), created_at                                                           |
 
 - Índice en `scores (scenario_id, score DESC)` y función para el top N por escenario.
 - **RLS:**
@@ -625,12 +637,14 @@ Objetivo: dejar las fundaciones listas, validar el stack de render en dispositiv
 ### 7.7 Spike técnico de render (decisión de 2.3)
 
 **Escena de prueba:**
+
 - Plano con la textura de rombos.
 - 30 zombies animados con skinning, usando el zombie del lote de prueba de Genex (7.9) o un placeholder riggeado hasta que esté.
 - Material toon TSL, inverted hull y, en calidad alta, el pase Sobel.
 - Glow por billboards y niebla de color.
 
 **Medición** en las dos implementaciones, en los dispositivos de 8.1:
+
 - fps promedio y p1.
 - Frame time.
 - Temperatura y throttling tras 10 minutos.
@@ -697,31 +711,31 @@ GitHub Actions con lint, typecheck, tests, build de la landing, `level:validate`
 
 ## 8. Pendientes y valores por defecto
 
-| Tema | Por defecto en Fase 0 |
-|---|---|
+| Tema                       | Por defecto en Fase 0                                                                                                                                 |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 8.1 Dispositivos del spike | 1 iPhone de los últimos 3 años, 1 Android de gama media (~2023) y 1 Android de gama media-baja (~2021, Vulkan 1.1). Confirmar modelos con el usuario. |
-| Dispositivos mínimos | iOS 16+ y Android con Vulkan 1.1+ (se ajusta según el spike) |
-| Hosting de la landing | Vercel |
-| Monitoreo de crashes | Sentry (configurado en Fase 1) |
-| Monetización | Sin implementar. La arquitectura no debe impedir compras in-app. |
-| Logros y gamepad | Fuera de alcance hasta Fase 3 |
-| Susto guionado en Zona 1 | Solo un trigger reservado, sin implementación |
-| Ubicación de la carta 2 | Altar |
+| Dispositivos mínimos       | iOS 16+ y Android con Vulkan 1.1+ (se ajusta según el spike)                                                                                          |
+| Hosting de la landing      | Vercel                                                                                                                                                |
+| Monitoreo de crashes       | Sentry (configurado en Fase 1)                                                                                                                        |
+| Monetización               | Sin implementar. La arquitectura no debe impedir compras in-app.                                                                                      |
+| Logros y gamepad           | Fuera de alcance hasta Fase 3                                                                                                                         |
+| Susto guionado en Zona 1   | Solo un trigger reservado, sin implementación                                                                                                         |
+| Ubicación de la carta 2    | Altar                                                                                                                                                 |
 
 ## 8-bis. Decisiones tomadas durante la Fase 0
 
-| Fecha | Tema | Decisión |
-|---|---|---|
-| 2026-10-18 | 8.1 Dispositivos del spike | Solo iPhone 13/14 (iOS 18–26). Android queda pendiente y documentado como no medido. |
-| 2026-10-18 | Development builds | EAS Build en la nube. Primer objetivo: iOS Simulator (Xcode 27.1 instalado). Sin Apple Developer Program por ahora. |
-| 2026-10-18 | Supabase local | OrbStack (Docker 29.8) instalado. Entorno local con Supabase CLI 2.121 como devDependency. |
-| 2026-10-18 | Repositorio | `git init` + repo público `nhsiciliano/ApocalipticBA` en GitHub. |
-| 2026-10-18 | Binarios | GLB del blockout versionados. `packages/assets/raw/` (Genex) en `.gitignore` con `manifest.json` de ids. `docs/references/**` ignorado. |
-| 2026-10-18 | Render | `react-native-wgpu` deprecado → `react-native-webgpu` 0.16.1. |
-| 2026-10-18 | Pipeline de assets | Hermes sin WASM: sin KTX2 ni meshopt en Fase 0. Exportar `.gltf` + `.bin` + texturas externas. Compresión nativa como ítem del spike. |
-| 2026-10-18 | TypeScript | ~6.0.3 (template Expo 58). No TS 7. |
-| 2026-10-18 | Blender | 5.2.2 LTS instalado. |
-| 2026-10-18 | Flujo de trabajo | Tareas clasificadas Bajo/Medio/Alto y delegadas a sesiones `low-dev` / `mid-dev` / `high-dev`; `planner` orquesta. Documentación de librerías vía Context7. |
+| Fecha      | Tema                       | Decisión                                                                                                                                                    |
+| ---------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-10-18 | 8.1 Dispositivos del spike | Solo iPhone 13/14 (iOS 18–26). Android queda pendiente y documentado como no medido.                                                                        |
+| 2026-10-18 | Development builds         | EAS Build en la nube. Primer objetivo: iOS Simulator (Xcode 27.1 instalado). Sin Apple Developer Program por ahora.                                         |
+| 2026-10-18 | Supabase local             | OrbStack (Docker 29.8) instalado. Entorno local con Supabase CLI 2.121 como devDependency.                                                                  |
+| 2026-10-18 | Repositorio                | `git init` + repo público `nhsiciliano/ApocalipticBA` en GitHub.                                                                                            |
+| 2026-10-18 | Binarios                   | GLB del blockout versionados. `packages/assets/raw/` (Genex) en `.gitignore` con `manifest.json` de ids. `docs/references/**` ignorado.                     |
+| 2026-10-18 | Render                     | `react-native-wgpu` deprecado → `react-native-webgpu` 0.16.1.                                                                                               |
+| 2026-10-18 | Pipeline de assets         | Hermes sin WASM: sin KTX2 ni meshopt en Fase 0. Exportar `.gltf` + `.bin` + texturas externas. Compresión nativa como ítem del spike.                       |
+| 2026-10-18 | TypeScript                 | ~6.0.3 (template Expo 58). No TS 7.                                                                                                                         |
+| 2026-10-18 | Blender                    | 5.2.2 LTS instalado.                                                                                                                                        |
+| 2026-10-18 | Flujo de trabajo           | Tareas clasificadas Bajo/Medio/Alto y delegadas a sesiones `low-dev` / `mid-dev` / `high-dev`; `planner` orquesta. Documentación de librerías vía Context7. |
 
 ---
 

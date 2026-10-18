@@ -2,15 +2,15 @@
 
 Carpeta única para toda la documentación viva del proyecto. Se mantiene junto al código y se actualiza en el mismo commit que el cambio que documenta.
 
-| Carpeta / archivo | Qué contiene |
-|---|---|
-| `prompt-base.md` | Prompt base del producto (spec completa, secciones 1–9). La sección 8 se actualiza con cada decisión tomada. |
-| `plan/fase-0.md` | Plan aprobado de la Fase 0 con hitos, tareas y grado de dificultad. |
-| `plan/estado.md` | Estado de avance por hito: qué sesión lo ejecutó, commit, fecha, pendientes. |
-| `decisions/` | ADRs (Architecture Decision Records), formato MADR corto, numerados `ADR-NNN-titulo.md`. |
-| `spikes/` | Informes de spikes técnicos (`render.md`, `genex-style.md`). |
-| `references/` | Referencias visuales de uso interno. **No se publican**: el contenido binario está en `.gitignore`. |
-| `tooling/` | Versiones fijadas del stack, requisitos de máquina y cómo se verificaron. |
+| Carpeta / archivo | Qué contiene                                                                                                 |
+| ----------------- | ------------------------------------------------------------------------------------------------------------ |
+| `prompt-base.md`  | Prompt base del producto (spec completa, secciones 1–9). La sección 8 se actualiza con cada decisión tomada. |
+| `plan/fase-0.md`  | Plan aprobado de la Fase 0 con hitos, tareas y grado de dificultad.                                          |
+| `plan/estado.md`  | Estado de avance por hito: qué sesión lo ejecutó, commit, fecha, pendientes.                                 |
+| `decisions/`      | ADRs (Architecture Decision Records), formato MADR corto, numerados `ADR-NNN-titulo.md`.                     |
+| `spikes/`         | Informes de spikes técnicos (`render.md`, `genex-style.md`).                                                 |
+| `references/`     | Referencias visuales de uso interno. **No se publican**: el contenido binario está en `.gitignore`.          |
+| `tooling/`        | Versiones fijadas del stack, requisitos de máquina y cómo se verificaron.                                    |
 
 ## Reglas
 

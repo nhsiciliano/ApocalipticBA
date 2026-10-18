@@ -8,70 +8,70 @@ Skill aplicado: `spec-driven-development` (la spec ya existe: es el prompt) → 
 
 ### Escala de dificultad usada en este plan
 
-| Grado | Significado |
-|---|---|
-| **Bajo** | Configuración o código conocido, sin incógnitas técnicas. Riesgo de rework mínimo. |
-| **Medio** | Lógica propia con tests, o integración de varias herramientas con documentación clara. Puede requerir 1–2 iteraciones. |
-| **Alto** | Incógnitas técnicas reales (stack en evolución, Hermes sin WASM, hardware), dependencias externas (Xcode, Docker, Blender, cuentas) o trabajo que puede exigir cambiar el enfoque. |
+| Grado     | Significado                                                                                                                                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Bajo**  | Configuración o código conocido, sin incógnitas técnicas. Riesgo de rework mínimo.                                                                                                 |
+| **Medio** | Lógica propia con tests, o integración de varias herramientas con documentación clara. Puede requerir 1–2 iteraciones.                                                             |
+| **Alto**  | Incógnitas técnicas reales (stack en evolución, Hermes sin WASM, hardware), dependencias externas (Xcode, Docker, Blender, cuentas) o trabajo que puede exigir cambiar el enfoque. |
 
 ### Resumen de dificultad por hito
 
-| Hito | Tema | Dificultad |
-|---|---|---|
-| 0 | Bootstrap del repo | Bajo |
-| 1 | Monorepo y tooling | Bajo |
-| 2 | `packages/shared` | Bajo |
-| 3 | `packages/game-core` | Medio |
-| 4 | Supabase | Medio |
-| 5 | Landing | Medio |
-| 6 | App mobile base + GameCanvas dual | Alto |
-| 7 | Spike de render | Alto |
-| 8 | Blockout en Blender + export + validador | Alto |
-| 9 | Recorrido caminable | Alto |
-| 10 | Genex setup y lote de prueba | Medio |
-| 11 | CI | Medio |
-| — | Cierre y actualización del prompt | Bajo |
+| Hito | Tema                                     | Dificultad |
+| ---- | ---------------------------------------- | ---------- |
+| 0    | Bootstrap del repo                       | Bajo       |
+| 1    | Monorepo y tooling                       | Bajo       |
+| 2    | `packages/shared`                        | Bajo       |
+| 3    | `packages/game-core`                     | Medio      |
+| 4    | Supabase                                 | Medio      |
+| 5    | Landing                                  | Medio      |
+| 6    | App mobile base + GameCanvas dual        | Alto       |
+| 7    | Spike de render                          | Alto       |
+| 8    | Blockout en Blender + export + validador | Alto       |
+| 9    | Recorrido caminable                      | Alto       |
+| 10   | Genex setup y lote de prueba             | Medio      |
+| 11   | CI                                       | Medio      |
+| —    | Cierre y actualización del prompt        | Bajo       |
 
 ### Decisiones del usuario ya tomadas (18-oct-2026)
 
-| Tema | Decisión |
-|---|---|
-| Dev builds | EAS Build en la nube (sin Xcode/Android Studio locales hoy) |
-| Supabase | Local con Docker/OrbStack (el usuario lo instala) |
-| Dispositivos spike | Solo iPhone 13/14 (iOS 18–26). Android queda pendiente y documentado |
-| Firma iOS | Sin Apple Developer Program. Empezar en **iOS Simulator** |
-| Git | `git init` + repo **público** en GitHub vía `gh` |
-| Binarios | Blockout en git; `packages/assets/raw/` (Genex) en `.gitignore` + `manifest.json` de ids |
+| Tema               | Decisión                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| Dev builds         | EAS Build en la nube (sin Xcode/Android Studio locales hoy)                              |
+| Supabase           | Local con Docker/OrbStack (el usuario lo instala)                                        |
+| Dispositivos spike | Solo iPhone 13/14 (iOS 18–26). Android queda pendiente y documentado                     |
+| Firma iOS          | Sin Apple Developer Program. Empezar en **iOS Simulator**                                |
+| Git                | `git init` + repo **público** en GitHub vía `gh`                                         |
+| Binarios           | Blockout en git; `packages/assets/raw/` (Genex) en `.gitignore` + `manifest.json` de ids |
 
 ### Versiones verificadas (npm registry + docs oficiales, 18-oct-2026)
 
-| Paquete | Versión fija | Nota |
-|---|---|---|
-| Node | 24.20.0 (instalado) | Expo 58 exige `^24.3`; Astro 7 exige `>=22.22` |
-| pnpm | 12.14.0 | No hay corepack en Node 24 → `npm i -g pnpm@12.14.0` |
-| turbo | 2.11.9 | |
-| typescript | ~6.0.3 | Es lo que usa el template oficial de Expo 58. **No** TS 7 (tsgo) todavía |
-| expo | ~58.0.14 | RN 0.88.0, React 19.3.0, `@types/react` ~19.3.0 |
-| expo-router | ~58.0.23 | |
-| react-native-reanimated / worklets | 4.7.1 / 0.13.0 | Peers de `react-native-webgpu` |
-| react-native-gesture-handler | ~3.3.0 | Versión del template Expo 58 |
-| **react-native-webgpu** | 0.16.1 | **`react-native-wgpu` está deprecado y renombrado**. New Arch obligatoria, Android minSdk 26 |
-| three / @types/three | 0.186.1 / 0.186.0 | `three/webgpu`, `three/tsl` |
-| @react-three/fiber | 9.8.2 | Requiere patch de `package.json` (`"react-native"` → bundle web) con `patch-package` |
-| three-mesh-bvh | 0.9.16 | peer `three >= 0.159` |
-| miniplex | 2.0.0 | |
-| expo-gl | ~58.0.3 | Plan B |
-| zod | 4.6.7 | |
-| vitest | 5.0.5 | |
-| astro | 7.4.0 | Vite 8, compilador Rust (más estricto), Tailwind 4 vía `@tailwindcss/vite` 4.3.3 (no `@astrojs/tailwind`) |
-| @playwright/test | 1.64.1 | |
-| supabase (CLI npm) | 2.121.0 | Como devDependency, sin Homebrew. Edge runtime embebido; Postgres sigue necesitando Docker |
-| @supabase/supabase-js | 2.118.0 | |
-| eas-cli | 25.2.0 | devDependency, se invoca con `pnpm exec eas` |
-| eslint / typescript-eslint / prettier | 10.13.0 / 8.71.2 / 3.9.10 | ESLint flat config |
-| @gltf-transform/cli | 4.5.1 | Optimización GLB |
-| Blender | 5.2 LTS (jul-2026, soporte hasta jul-2028) | Solo Apple Silicon (ok, arm64). El usuario lo instala |
-| Genex CLI | 1.36.9 (`npx @genex-ai/cli-demo@latest tools`) | 1 crédito = USD 0,01 |
+| Paquete                               | Versión fija                                   | Nota                                                                                                      |
+| ------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Node                                  | 24.20.0 (instalado)                            | Expo 58 exige `^24.3`; Astro 7 exige `>=22.22`                                                            |
+| pnpm                                  | 12.14.0                                        | No hay corepack en Node 24 → `npm i -g pnpm@12.14.0`                                                      |
+| turbo                                 | 2.11.9                                         |                                                                                                           |
+| typescript                            | ~6.0.3                                         | Es lo que usa el template oficial de Expo 58. **No** TS 7 (tsgo) todavía                                  |
+| expo                                  | ~58.0.14                                       | RN 0.88.0, React 19.3.0, `@types/react` ~19.3.0                                                           |
+| expo-router                           | ~58.0.23                                       |                                                                                                           |
+| react-native-reanimated / worklets    | 4.7.1 / 0.13.0                                 | Peers de `react-native-webgpu`                                                                            |
+| react-native-gesture-handler          | ~3.3.0                                         | Versión del template Expo 58                                                                              |
+| **react-native-webgpu**               | 0.16.1                                         | **`react-native-wgpu` está deprecado y renombrado**. New Arch obligatoria, Android minSdk 26              |
+| three / @types/three                  | 0.186.1 / 0.186.0                              | `three/webgpu`, `three/tsl`                                                                               |
+| @react-three/fiber                    | 9.8.2                                          | Requiere patch de `package.json` (`"react-native"` → bundle web) con `patch-package`                      |
+| three-mesh-bvh                        | 0.9.16                                         | peer `three >= 0.159`                                                                                     |
+| miniplex                              | 2.0.0                                          |                                                                                                           |
+| expo-gl                               | ~58.0.3                                        | Plan B                                                                                                    |
+| zod                                   | 4.6.7                                          |                                                                                                           |
+| vitest                                | 5.0.5                                          |                                                                                                           |
+| astro                                 | 7.4.0                                          | Vite 8, compilador Rust (más estricto), Tailwind 4 vía `@tailwindcss/vite` 4.3.3 (no `@astrojs/tailwind`) |
+| @playwright/test                      | 1.64.1                                         |                                                                                                           |
+| supabase (CLI npm)                    | 2.121.0                                        | Como devDependency, sin Homebrew. Edge runtime embebido; Postgres sigue necesitando Docker                |
+| @supabase/supabase-js                 | 2.118.0                                        |                                                                                                           |
+| eas-cli                               | 25.2.0                                         | devDependency, se invoca con `pnpm exec eas`                                                              |
+| eslint / typescript-eslint / prettier | 10.13.0 / 8.71.2 / 3.9.10                      | ESLint flat config                                                                                        |
+| @gltf-transform/cli                   | 4.5.1                                          | Optimización GLB                                                                                          |
+| Blender                               | 5.2 LTS (jul-2026, soporte hasta jul-2028)     | Solo Apple Silicon (ok, arm64). El usuario lo instala                                                     |
+| Genex CLI                             | 1.36.9 (`npx @genex-ai/cli-demo@latest tools`) | 1 crédito = USD 0,01                                                                                      |
 
 ### Desvíos respecto al prompt (se registran en ADRs)
 
@@ -102,12 +102,15 @@ Nada de esto bloquea los hitos 1–5.
 Cada hito termina con: tests verdes, `pnpm lint && pnpm typecheck` verdes, commit atómico. Los hitos 2–5 son independientes del toolchain nativo y se hacen primero. Cada tarea lleva su dificultad entre corchetes.
 
 ### Hito 0 — Bootstrap del repo — **Bajo**
+
 - [Bajo] `npm i -g pnpm@12.14.0`; `git init`; `gh repo create nhsiciliano/ApocalipticBA --public --source=. --push` después del primer commit.
 - [Bajo] `.gitignore` raíz: node_modules, `.expo`, `ios/ android/` (CNG), `.turbo`, `dist/` de build, `docs/references/**` (excepto `README.md`), `packages/assets/raw/**` (excepto `manifest.json` y `.gitkeep`), `supabase/.temp`, `.env*`.
 - [Bajo] `.nvmrc` = 24.20.0; `packageManager: pnpm@12.14.0` en `package.json`.
 
 ### Hito 1 — Monorepo y tooling (7.1) — **Bajo**
+
 Archivos: `package.json`, `pnpm-workspace.yaml` (`apps/*`, `packages/*`), `turbo.json`, `packages/config/{tsconfig.base.json,tsconfig.node.json,tsconfig.react-native.json,eslint.config.js,prettier.config.js}`, `README.md`, `AGENTS.md`, `docs/decisions/ADR-001..005.md`, `docs/references/escenario-01/README.md`.
+
 - [Bajo] tsconfig base: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `moduleResolution: bundler`.
 - [Bajo] Scripts raíz: `dev`, `build`, `lint`, `typecheck`, `test`, `level:export`, `level:validate`, `assets:optimize`, `db:types`, `db:start`, `db:reset`.
 - [Bajo] Turbo pipeline con caché; `test` depende de `^build` solo donde haga falta.
@@ -117,7 +120,9 @@ Archivos: `package.json`, `pnpm-workspace.yaml` (`apps/*`, `packages/*`), `turbo
 - [Bajo] Verificación: `pnpm install` limpio, `pnpm turbo run lint typecheck` sin paquetes aún (pasa vacío).
 
 ### Hito 2 — `packages/shared` (7.2) — **Bajo**
+
 Archivos: `packages/shared/src/{index.ts, scenario/schema.ts, waitlist/schema.ts, edge/{start-session,submit-score,sync-progress}.ts, constants/{meteorite-palette.ts,quality.ts}, db/types.ts}`, tests en `src/**/*.test.ts`.
+
 - [Medio] Esquema Zod de `scenario.json`: `{ id, slug, name, zones[], objectives[], triggers[], encounters[] (enc_*), notes[], checkpoints[] (CHK_*), interactables[] (INT_*), oneway[] (COL_oneway_*), pickups[] (PICK_*), spawns[] }` con ids tipados por prefijo (regex) para que el validador cruce contra el GLB. Es el contrato que usan game-core, Blender y el validador: hay que acertarle a la primera o se propaga.
 - [Bajo] Waitlist: `{ email, locale: 'es-AR'|'en', source?, honeypot? }`.
 - [Bajo] Payloads de Edge Functions + respuestas.
@@ -126,7 +131,9 @@ Archivos: `packages/shared/src/{index.ts, scenario/schema.ts, waitlist/schema.ts
 - [Bajo] Tests Vitest: parse ok/ko de cada esquema; snapshot de un `scenario.json` mínimo.
 
 ### Hito 3 — `packages/game-core` (7.3) — **Medio**
+
 Archivos: `src/{loop/fixed-step.ts, ecs/world.ts, adapters/{input,audio,storage,haptics}.ts, systems/{player-movement,objectives,triggers,checkpoints,interactables,notes}.ts, scenario/{load,runtime}.ts, index.ts}` + tests.
+
 - [Medio] Loop: acumulador con `dt` fijo 1/60, `maxSubSteps`, `alpha` para interpolación de render; sin `requestAnimationFrame` (lo llama el host). Debe ser determinista bajo test.
 - [Bajo] ECS: miniplex 2 (`World<Entity>`), componentes puros (`Transform`, `Velocity`, `PlayerIntent`, `Health`, `TriggerVolume`, `Interactable`, `Checkpoint`).
 - [Bajo] Adaptadores: interfaces TS puras; `InputAdapter.sample(): PlayerIntent` (moveX/Y, lookDX/DY, jump, crouch, run, interact, interactHeld).
@@ -139,7 +146,9 @@ Archivos: `src/{loop/fixed-step.ts, ecs/world.ts, adapters/{input,audio,storage,
 - [Medio] Tests: timestep determinista, movimiento, triggers enter/exit, objetivos secuenciales, checkpoint round-trip, hold acumulable, carga de `scenario.json` con los esquemas de `shared`.
 
 ### Hito 4 — Supabase (7.4) — **Medio**
+
 Archivos: `supabase/{config.toml, migrations/0001_schema.sql, 0002_rls.sql, 0003_functions.sql, seed.sql, functions/{_shared/,waitlist-signup,start-session,submit-score,sync-progress}/index.ts, functions/deno.json}` + tests.
+
 - [Bajo] `pnpm exec supabase init`; `supabase start` (requiere Docker instalado por el usuario).
 - [Medio] Migraciones: las 11 tablas de la sección 5, índice `scores(scenario_id, score desc)`, función `top_scores(scenario_id, limit)`, RLS en todas (`scores`/`game_sessions` sin insert desde cliente; `waitlist` sin select público; `profiles`/`player_progress` por `auth.uid()`), rate-limit table para waitlist. La RLS es fácil de escribir mal en silencio: se prueba con tests negativos.
 - [Bajo] Seeds: escenario `constitucion`, armas `pistola` y `escopeta`, remote config inicial (`min_app_version`, flags).
@@ -150,7 +159,9 @@ Archivos: `supabase/{config.toml, migrations/0001_schema.sql, 0002_rls.sql, 0003
 - [Medio] Verificación: `supabase db reset` limpio; test de integración que inserta en waitlist vía función y comprueba con anon key que `select` devuelve 0 filas (criterio 7.12).
 
 ### Hito 5 — Landing (7.5) — **Medio**
+
 Archivos: `apps/landing/{astro.config.mjs, src/{layouts,pages/{index,en/index,privacidad,terminos,prensa}.astro, components/*, i18n/{es-AR,en}.json, islands/Waitlist.ts, styles/global.css}, public/, tests/e2e/*.spec.ts, lighthouserc.json}`.
+
 - [Bajo] Astro 7.4 `output: 'static'`, `i18n: { defaultLocale: 'es-AR', locales: ['es-AR','en'], routing: { prefixDefaultLocale: false } }`, Tailwind 4 por `@tailwindcss/vite`, `@astrojs/sitemap`.
 - [Medio] Secciones 1.8 con textos reales de la premisa (voseo) y arte provisorio (SVG/placeholder con la paleta del meteorito). Hero, escenarios, features, galería, FAQ, CTAs (App Store / Google Play deshabilitados + waitlist), press kit, privacidad, términos. El volumen de contenido en dos idiomas es lo que lo hace medio, no la técnica.
 - [Medio] Waitlist: isla sin framework (`<script>` TS) que hace `fetch` a `PUBLIC_SUPABASE_URL/functions/v1/waitlist-signup` con el anon key; honeypot; estados ok/error; CORS en la Edge Function.
@@ -159,7 +170,9 @@ Archivos: `apps/landing/{astro.config.mjs, src/{layouts,pages/{index,en/index,pr
 - [Medio] Lighthouse ≥95 en las cuatro categorías: `@lhci/cli` contra `astro preview` (local y CI). Accesibilidad y performance suelen necesitar 1–2 pasadas de ajuste.
 
 ### Hito 6 — App mobile base (7.6) — **Alto**
+
 Archivos: `apps/mobile/{app.json, eas.json, metro.config.js, babel.config.js, patches/@react-three+fiber+9.8.2.patch, app/{_layout,index,menu,scenarios,play,pause,game-over,summary,journal,ranking,profile,settings,login}.tsx, src/{render/{GameCanvas.tsx,webgpu/FiberCanvas.tsx,webgpu/makeWebGPURenderer.ts,webgl/GLCanvas.tsx,backend.ts}, debug/DebugOverlay.tsx, store/*, adapters/*}}`.
+
 - [Medio] Expo 58 + expo-router + expo-dev-client en monorepo pnpm (instalación aislada; fallback `nodeLinker: hoisted` si Metro no resuelve). `app.json`: `newArchEnabled: true`, `orientation: landscape`, plugins `react-native-webgpu`, `expo-screen-orientation`, `expo-dev-client`; bundle id `ar.com.apocalipticba.app`.
 - [Bajo] Navegación entre pantallas placeholder con Expo Router.
 - [Medio] Metro: alias `three`→`three.webgpu.js` (según docs oficiales), `assetExts` + `glb gltf bin hdr`; polyfill `fast-text-encoding` como primer import; `patch-package` para `@react-three/fiber`.
@@ -169,7 +182,9 @@ Archivos: `apps/mobile/{app.json, eas.json, metro.config.js, babel.config.js, pa
 - [Medio] Verificación: instalar el `.app` en el Simulator; navegación placeholder y cubo girando en ambos backends.
 
 ### Hito 7 — Spike de render (7.7) — **Alto**
+
 Archivos: `apps/mobile/src/spike/{SpikeScene.tsx, materials/{toon.tsl.ts, outline-hull.ts, sobel-pass.ts}, glow/Billboards.tsx, fog.ts}`, `docs/spikes/render.md`, ADR 002 actualizado.
+
 - [Medio] Escena: plano con textura de rombos (placeholder procedural hasta Genex), niebla de color plano, glow por billboards aditivos.
 - [Alto] 30 zombies skinned animados (placeholder riggeado `Soldier`/`Michelle` de three como `.gltf` separado, o el zombie Genex). Incógnitas: carga de `.gltf` externo en Hermes, memoria con 30 skinned, skinning en WebGPURenderer vs WebGLRenderer.
 - [Alto] Material toon en TSL (gradient map 3 bandas + rim + emisivo con pulso 1.5 s) que compile a WGSL **y** a GLSL para el plan B; inverted hull; pase Sobel a media resolución solo en `high` (post-processing con TSL en RN tiene menos ejemplos).
@@ -178,7 +193,9 @@ Archivos: `apps/mobile/src/spike/{SpikeScene.tsx, materials/{toon.tsl.ts, outlin
 - [Medio] Entregable: `docs/spikes/render.md` con tablas, decisión iOS (WebGPU/plan B/híbrido) y "Android: pendiente". ADR 002 actualizado.
 
 ### Hito 8 — Blockout del Escenario 1 en Blender (7.8) — **Alto**
+
 Archivos: `levels/escenario-01/scripts/{build_level.py, zones/{z1_hall,z2_plaza,z3_frente,z4_lateral,z5_interior,bg_skyline}.py, markers.py, export.py}`, `levels/escenario-01/README.md`, `scenarios/escenario-01/scenario.json`, `tools/level-export/`, `tools/level-validate/`.
+
 - [Medio] Infraestructura `bpy` headless (Blender 5.2, 1 u = 1 m): helpers para crear primitivas, colecciones `Z1_Hall … BG_Skyline`, nombres por convención y custom properties → glTF extras.
 - [Alto] Geometría de las 5 zonas + fondo según 1.3 (hall con kioscos/boletería/andenes, fachada, plaza con palos borrachos, frente con reja, lateral con 5–7 contrafuertes/calle cortada/andamio/patio, interior con nave y sacristía). Alto porque el diseño espacial se hace a ciegas desde código y requiere iterar con capturas o con el playtest del Hito 9 (distancias, alturas de andamio, ángulos ciegos entre contrafuertes).
 - [Medio] Marcadores completos: `COL_`, `COL_oneway_`, `TRG_`, `SPAWN_`, `PICK_`, `INT_`, `CHK_`, `NAV_` (navmesh = malla plana caminable por zona).
@@ -188,7 +205,9 @@ Archivos: `levels/escenario-01/scripts/{build_level.py, zones/{z1_hall,z2_plaza,
 - [Bajo] Si Blender no está instalado al llegar acá, el validador y `scenario.json` se desarrollan contra un fixture mínimo y la exportación queda como paso bloqueado documentado.
 
 ### Hito 9 — Recorrido caminable en la app (7.9) — **Alto**
+
 Archivos: `apps/mobile/src/{level/{ZoneStreamer.ts, loadZone.ts}, player/{CapsuleController.ts, bvh.ts}, input/{TouchControls.tsx, joystick.ts}, ui/hud/{Hud.tsx, NoteViewer.tsx, InteractPrompt.tsx}, game/{GameHost.ts (loop + adapters)}}`.
+
 - [Medio] `GameHost`: conecta loop de `game-core`, adapters de input/storage/haptics y el render; lee el input en el loop, no vía estado React.
 - [Medio] Streaming por zonas: carga Z(n±1), descarga zonas anteriores al cruzar `COL_oneway_`; carga de `.gltf` por `Image.resolveAssetSource`.
 - [Alto] Controlador de cápsula con `three-mesh-bvh` sobre mallas `COL_` (shapecast), gravedad, salto, agacharse, escalones, sin atravesar paredes a 60 Hz; raycast para interacción. Es la pieza con más tuning y más casos borde.
@@ -199,6 +218,7 @@ Archivos: `apps/mobile/src/{level/{ZoneStreamer.ts, loadZone.ts}, player/{Capsul
 - [Alto] Verificación: recorrido completo Z1 → carta final sin bloqueos en Simulator (y en iPhone si hay firma local). Alto porque cualquier hueco de colisión o trigger mal ubicado en el Hito 8 aparece recién acá y obliga a volver a Blender.
 
 ### Hito 10 — Genex: setup y lote de prueba (7.10) — **Medio**
+
 - [Bajo] `npx @genex-ai/cli-demo@latest tools` en la raíz; el usuario hace login; `npx genex doctor`.
 - [Bajo] Integrar lo que Genex agregue a `AGENTS.md` sin pisar las reglas propias.
 - [Bajo] Proponer el lote (zombie común riggeado + walk/run/attack/die, viewmodel pistola, palo borracho, textura rombos `--terrain`, fragmento de meteorito) con costo estimado de `npx genex --help` y **esperar confirmación**.
@@ -207,7 +227,9 @@ Archivos: `apps/mobile/src/{level/{ZoneStreamer.ts, loadZone.ts}, player/{Capsul
 - [Bajo] Documentar ajustes de prompt en `docs/spikes/genex-style.md`.
 
 ### Hito 11 — CI (7.11) — **Medio**
+
 Archivos: `.github/workflows/ci.yml`.
+
 - [Bajo] Jobs `install` (pnpm cache), `lint`, `typecheck`, `test` con caché de Turborepo.
 - [Medio] `build:landing` + Lighthouse CI en el runner (umbral 95 puede fluctuar en CI; se fija con `numberOfRuns`).
 - [Bajo] `level:validate` contra los `.gltf` commiteados en `dist/levels`.
@@ -215,6 +237,7 @@ Archivos: `.github/workflows/ci.yml`.
 - [Bajo] EAS Build en tags como job manual (`workflow_dispatch`) hasta que haya cuenta de Apple.
 
 ### Cierre (7.13) — **Bajo**
+
 - [Bajo] Resumen de hecho/pendiente, lista de decisiones para el usuario.
 - [Bajo] Actualización de la sección 8 del prompt en `docs/prompt-base.md` (copia versionada del prompt con las decisiones tomadas).
 
