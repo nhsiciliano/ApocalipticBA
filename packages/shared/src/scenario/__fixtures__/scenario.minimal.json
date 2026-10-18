@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "id": "constitucion",
+  "name": {
+    "es-AR": "Constitución"
+  },
+  "order": 1,
+  "start": {
+    "zone": "Z1_Hall",
+    "spawnId": "SPAWN_player_start_1"
+  },
+  "zones": [
+    {
+      "id": "Z1_Hall",
+      "name": {
+        "es-AR": "Hall de la estación"
+      },
+      "file": "z1-hall.gltf",
+      "fogColor": "#C9A87A",
+      "preload": ["Z2_Plaza"]
+    },
+    {
+      "id": "Z2_Plaza",
+      "name": {
+        "es-AR": "Plaza"
+      },
+      "file": "z2-plaza.gltf",
+      "fogColor": "#8A3A2E",
+      "preload": ["Z3_Frente"]
+    },
+    {
+      "id": "Z3_Frente",
+      "name": {
+        "es-AR": "Frente de la iglesia"
+      },
+      "file": "z3-frente.gltf",
+      "fogColor": "#6B5A63",
+      "preload": ["Z4_Lateral"]
+    },
+    {
+      "id": "Z4_Lateral",
+      "name": {
+        "es-AR": "Lateral izquierdo de la iglesia"
+      },
+      "file": "z4-lateral.gltf",
+      "fogColor": "#4F4A66",
+      "preload": ["Z5_Interior"]
+    },
+    {
+      "id": "Z5_Interior",
+      "name": {
+        "es-AR": "Interior de la iglesia"
+      },
+      "file": "z5-interior.gltf",
+      "fogColor": "#3A2430",
+      "preload": []
+    },
+    {
+      "id": "BG_Skyline",
+      "name": {
+        "es-AR": "Skyline"
+      },
+      "file": "skyline.gltf",
+      "fogColor": "#8A3A2E",
+      "preload": []
+    }
+  ],
+  "objectives": [
+    {
+      "id": "obj_leer_carta",
+      "zone": "Z1_Hall",
+      "text": {
+        "es-AR": "Leé la carta de tu papá"
+      }
+    },
+    {
+      "id": "obj_forzar_sacristia",
+      "zone": "Z4_Lateral",
+      "text": {
+        "es-AR": "Forzá la puerta de la sacristía"
+      },
+      "markerNode": "MRK_sacristia"
+    }
+  ],
+  "triggers": [
+    {
+      "id": "TRG_esquina_4a",
+      "zone": "Z4_Lateral",
+      "once": true,
+      "actions": [
+        {
+          "type": "checkpoint.save",
+          "checkpointId": "CHK_4a"
+        },
+        {
+          "type": "encounter.start",
+          "encounterId": "enc_4a"
+        },
+        {
+          "type": "audio.play",
+          "cueId": "sfx_corredor_grito"
+        },
+        {
+          "type": "text.show",
+          "text": {
+            "es-AR": "Algo viene corriendo."
+          },
+          "durationMs": 3000
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "enc_4a",
+      "zone": "Z4_Lateral",
+      "waves": [
+        {
+          "composition": {
+            "comun": 2,
+            "corredor": 1
+          },
+          "spawnIds": ["SPAWN_enc_4a_1", "SPAWN_enc_4a_2", "SPAWN_enc_4a_3"],
+          "delayMs": 0
+        }
+      ],
+      "endCondition": "all_dead",
+      "onEnd": [
+        {
+          "type": "flag.set",
+          "flag": "enc_4a_cleared",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CHK_4a",
+      "zone": "Z4_Lateral"
+    },
+    {
+      "id": "CHK_4c",
+      "zone": "Z4_Lateral"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note_carta_1",
+      "title": {
+        "es-AR": "Primera carta"
+      },
+      "body": {
+        "es-AR": "Te golpeaste fuerte la cabeza y te desmayaste. Decidimos dejarte para que te recuperes mientras vamos a la iglesia, cruzando toda la plaza, a buscar provisiones. Nos llegó el mensaje de que ahí vamos a encontrar alimentos, agua y algunas armas más. Desde que cayó el meteorito todo es una locura: la gente parece poseída y no se puede confiar en nadie. Vamos a volver lo antes posible a buscarte. Te quiero. Papá."
+      },
+      "voiceCueId": "vo_carta_1"
+    },
+    {
+      "id": "note_carta_2",
+      "title": {
+        "es-AR": "Segunda carta"
+      },
+      "body": {
+        "es-AR": "Hijo: las cosas se complicaron todavía más. Una horda de zombies rodeó la iglesia y tuvimos que escaparnos por atrás, hacia la boca del subte. Era el camino más seguro. Logramos juntar algo de agua y algunas armas. Nos enteramos de que en la estación Retiro hay un grupo numeroso de civiles armados y vamos a intentar unirnos a ellos. Vamos a tratar de llegar por el subte. En cuanto pueda juntar un grupo armado y fuerte, voy a ir a buscarte. Intentá mantenerte a salvo. Papá."
+      },
+      "voiceCueId": "vo_carta_2"
+    }
+  ],
+  "pickups": [
+    {
+      "id": "PICK_pistola_1",
+      "zone": "Z1_Hall",
+      "item": "pistola",
+      "amount": 1
+    },
+    {
+      "id": "PICK_escopeta_1",
+      "zone": "Z1_Hall",
+      "item": "escopeta",
+      "amount": 1
+    }
+  ],
+  "interactables": [
+    {
+      "id": "INT_note_carta_1",
+      "zone": "Z1_Hall",
+      "prompt": {
+        "es-AR": "Leer"
+      },
+      "kind": "note",
+      "noteId": "note_carta_1",
+      "onRead": [
+        {
+          "type": "objective.complete",
+          "objectiveId": "obj_leer_carta"
+        }
+      ]
+    },
+    {
+      "id": "INT_locked_reja",
+      "zone": "Z3_Frente",
+      "prompt": {
+        "es-AR": "Abrir"
+      },
+      "kind": "locked",
+      "message": {
+        "es-AR": "Está cerrada. Tiene que haber otra entrada."
+      }
+    },
+    {
+      "id": "INT_hold_sacristia",
+      "zone": "Z4_Lateral",
+      "prompt": {
+        "es-AR": "Forzar"
+      },
+      "kind": "hold",
+      "durationMs": 6000,
+      "accumulative": true,
+      "onStart": [
+        {
+          "type": "audio.play",
+          "cueId": "sfx_forzar_puerta",
+          "loop": true
+        }
+      ],
+      "onComplete": [
+        {
+          "type": "objective.complete",
+          "objectiveId": "obj_forzar_sacristia"
+        },
+        {
+          "type": "zone.preload",
+          "zones": ["Z5_Interior"]
+        }
+      ]
+    },
+    {
+      "id": "INT_climb_andamio",
+      "zone": "Z4_Lateral",
+      "prompt": {
+        "es-AR": "Trepar"
+      },
+      "kind": "climb",
+      "path": [
+        [0, 0, 0],
+        [0, 2.5, 0.6],
+        [0, 4.2, 1.8]
+      ],
+      "durationMs": 2500,
+      "onComplete": [
+        {
+          "type": "checkpoint.save",
+          "checkpointId": "CHK_4c"
+        }
+      ]
+    },
+    {
+      "id": "INT_gate_salida_hall",
+      "zone": "Z1_Hall",
+      "prompt": {
+        "es-AR": "Salir a la plaza"
+      },
+      "kind": "gate",
+      "requiresItems": ["pistola", "escopeta"],
+      "lockedMessage": {
+        "es-AR": "Necesitás las dos armas antes de salir."
+      },
+      "onOpen": [
+        {
+          "type": "zone.preload",
+          "zones": ["Z2_Plaza"]
+        }
+      ]
+    }
+  ],
+  "oneways": [
+    {
+      "id": "COL_oneway_andamio",
+      "zone": "Z4_Lateral",
+      "unloadZones": ["Z2_Plaza", "Z3_Frente"]
+    }
+  ]
+}
