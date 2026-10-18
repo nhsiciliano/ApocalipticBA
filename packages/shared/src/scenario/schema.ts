@@ -39,8 +39,8 @@ export const ObjectiveSchema = z.strictObject({
   id: ObjectiveIdSchema,
   zone: ZoneIdSchema,
   text: LocalizedTextSchema,
-  /** Nombre del nodo glTF donde el HUD muestra el marcador. */
-  markerNode: z.string().min(1).optional(),
+  /** Nodo glTF (`MRK_<id>`) donde el HUD muestra el marcador. */
+  markerNode: z.string().regex(ID_PATTERNS.marker).optional(),
 });
 export type Objective = z.infer<typeof ObjectiveSchema>;
 
@@ -130,12 +130,17 @@ export const PICKUP_ITEMS = [
 export const PickupItemSchema = z.enum(PICKUP_ITEMS);
 export type PickupItem = z.infer<typeof PickupItemSchema>;
 
-export const PickupSchema = z.strictObject({
-  id: PickupIdSchema,
-  zone: ZoneIdSchema,
-  item: PickupItemSchema,
-  amount: z.int().min(1).default(1),
-});
+export const PickupSchema = z
+  .strictObject({
+    id: PickupIdSchema,
+    zone: ZoneIdSchema,
+    item: PickupItemSchema,
+    amount: z.int().min(1).default(1),
+  })
+  .refine((pickup) => pickup.id.slice('PICK_'.length, pickup.id.lastIndexOf('_')) === pickup.item, {
+    path: ['id'],
+    message: 'Pickup id type (PICK_<item>_<n>) must match its item',
+  });
 export type Pickup = z.infer<typeof PickupSchema>;
 
 const interactableBase = {

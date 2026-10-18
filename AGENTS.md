@@ -38,16 +38,17 @@ Consultá su documentación vigente vía Context7 (`resolve-library-id` y `query
 - Archivo `levels/escenario-01/escenario-01.blend`, con una colección por zona: `Z1_Hall`, `Z2_Plaza`, `Z3_Frente`, `Z4_Lateral`, `Z5_Interior`, `BG_Skyline`. Escala: 1 unidad = 1 m.
 - Convención de nombres de objetos:
 
-| Prefijo                 | Significado                           |
-| ----------------------- | ------------------------------------- |
-| `COL_`                  | Colisión (va al BVH, no se renderiza) |
-| `COL_oneway_<id>`       | Bloqueo de un solo sentido            |
-| `TRG_<id>`              | Trigger                               |
-| `SPAWN_<encuentro>_<n>` | Punto de aparición                    |
-| `PICK_<tipo>`           | Pickup                                |
-| `INT_<tipo>_<id>`       | Interactuable                         |
-| `CHK_<n>`               | Checkpoint                            |
-| `NAV_`                  | Navmesh                               |
+| Prefijo                 | Significado                                                      |
+| ----------------------- | ---------------------------------------------------------------- |
+| `COL_`                  | Colisión (va al BVH, no se renderiza)                            |
+| `COL_oneway_<id>`       | Bloqueo de un solo sentido                                       |
+| `TRG_<id>`              | Trigger                                                          |
+| `SPAWN_<encuentro>_<n>` | Punto de aparición                                               |
+| `PICK_<item>_<n>`       | Pickup; `<item>` es el item completo (`PICK_municion_pistola_1`) |
+| `INT_<tipo>_<id>`       | Interactuable                                                    |
+| `CHK_<n>`               | Checkpoint                                                       |
+| `NAV_`                  | Navmesh                                                          |
+| `MRK_<id>`              | Marcador de objetivo (Empty, no se renderiza)                    |
 
 - Los datos extra van en custom properties (se exportan como glTF extras). `pnpm level:validate` cruza estos nombres con `scenario.json`.
 

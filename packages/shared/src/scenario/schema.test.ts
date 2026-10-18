@@ -140,6 +140,32 @@ describe('field-level rules', () => {
   });
 });
 
+describe('pickup and marker naming', () => {
+  it('accepts a pickup whose id type is the full item name', () => {
+    const input = withChanges(
+      [['pickups', 0, 'id'], 'PICK_municion_pistola_1'],
+      [['pickups', 0, 'item'], 'municion_pistola'],
+    );
+    expect(safeParseScenario(input).success).toBe(true);
+  });
+
+  it('rejects a pickup whose id type differs from its item', () => {
+    expect(issuePaths(withChanges([['pickups', 0, 'item'], 'escopeta']))).toEqual(['pickups.0.id']);
+    const partial = withChanges(
+      [['pickups', 0, 'id'], 'PICK_municion_1'],
+      [['pickups', 0, 'item'], 'municion_pistola'],
+    );
+    expect(issuePaths(partial)).toEqual(['pickups.0.id']);
+  });
+
+  it('requires objective markers to be MRK_<id>', () => {
+    expect(issuePaths(withChanges([['objectives', 1, 'markerNode'], 'sacristia']))).toEqual([
+      'objectives.1.markerNode',
+    ]);
+    expect(issuePaths(withChanges([['objectives', 1, 'markerNode'], undefined]))).toEqual([]);
+  });
+});
+
 describe('cross-reference rules', () => {
   it.each([
     [

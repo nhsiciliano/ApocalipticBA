@@ -38,6 +38,11 @@ describe('collectSceneNodeIds', () => {
     expect(byZone.BG_Skyline.size).toBe(0);
   });
 
+  it('lists objective markers under the objective zone', () => {
+    expect(byZone.Z4_Lateral.has('MRK_sacristia')).toBe(true);
+    expect(byZone.Z1_Hall.has('MRK_sacristia')).toBe(false);
+  });
+
   it('does not list notes: they have no scene node', () => {
     const all = Object.values(byZone).flatMap((ids) => [...ids]);
     expect(all.some((id) => id.startsWith('note_'))).toBe(false);

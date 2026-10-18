@@ -13,7 +13,16 @@ describe('ID_PATTERNS', () => {
       ['SPAWN_enc_4a', 'SPAWN_player_start', 'SPAWN_otro_1'],
     ],
     ['playerSpawn', ['SPAWN_player_start_1'], ['SPAWN_enc_4a_1', 'SPAWN_player_start']],
-    ['pickup', ['PICK_pistola_1', 'PICK_botiquin_12'], ['PICK_pistola', 'PICK_municion_pistola_1']],
+    [
+      'pickup',
+      ['PICK_pistola_1', 'PICK_botiquin_12', 'PICK_municion_pistola_1'],
+      ['PICK_pistola', 'PICK__1', 'PICK_Pistola_1', 'PICK_municion__pistola_1'],
+    ],
+    [
+      'marker',
+      ['MRK_sacristia', 'MRK_iglesia_portal_2'],
+      ['MRK_', 'mrk_x', 'MRK_Mayus', 'sacristia'],
+    ],
     [
       'interactable',
       ['INT_note_carta_1', 'INT_hold_sacristia', 'INT_gate_salida_hall'],

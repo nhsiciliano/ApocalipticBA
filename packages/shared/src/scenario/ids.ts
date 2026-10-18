@@ -11,7 +11,10 @@ export const ID_PATTERNS = {
   /** `SPAWN_<encuentro>_<n>`; el spawn del jugador es `SPAWN_player_start_<n>`. */
   spawn: /^SPAWN_(enc_[a-z0-9_]+|player_start)_\d+$/,
   playerSpawn: /^SPAWN_player_start_\d+$/,
-  pickup: /^PICK_[a-z]+_\d+$/,
+  /** `PICK_<item>_<n>`: el tipo repite el `item` completo (ej. `PICK_municion_pistola_1`). */
+  pickup: /^PICK_[a-z]+(_[a-z]+)*_\d+$/,
+  /** `MRK_<id>`: marcador de objetivo (Empty en Blender, no se renderiza). */
+  marker: /^MRK_[a-z0-9_]+$/,
   interactable: /^INT_(note|locked|hold|climb|gate|pickup)_[a-z0-9_]+$/,
   oneway: /^COL_oneway_[a-z0-9_]+$/,
   note: /^note_[a-z0-9_]+$/,

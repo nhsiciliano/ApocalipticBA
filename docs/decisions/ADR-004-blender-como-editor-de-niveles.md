@@ -13,7 +13,7 @@ Los niveles necesitan geometría, colisiones, triggers, spawns, pickups, interac
 
 - **Blockout por script:** el greybox se genera con scripts `bpy` en Blender headless, a escala 1 unidad = 1 m. Después viene el playtest en la app, el pase de arte con piezas modulares y la iluminación horneada.
 - **Archivo por escenario:** `levels/escenario-01/escenario-01.blend`, con una colección por zona (`Z1_Hall`, `Z2_Plaza`, `Z3_Frente`, `Z4_Lateral`, `Z5_Interior`, `BG_Skyline`).
-- **Convenciones de nombres** que el validador entiende: `COL_` (colisión, va al BVH y no se renderiza), `COL_oneway_<id>`, `TRG_<id>`, `SPAWN_<encuentro>_<n>`, `PICK_<tipo>`, `INT_<tipo>_<id>`, `CHK_<n>` y `NAV_`. Los datos extra viajan como custom properties, exportadas como glTF extras.
+- **Convenciones de nombres** que el validador entiende: `COL_` (colisión, va al BVH y no se renderiza), `COL_oneway_<id>`, `TRG_<id>`, `SPAWN_<encuentro>_<n>`, `PICK_<item>_<n>` (el tipo es el item completo, ej. `PICK_municion_pistola_1`), `INT_<tipo>_<id>`, `CHK_<n>`, `NAV_` y `MRK_<id>` (marcador de objetivo: Empty que no se renderiza). Los datos extra viajan como custom properties, exportadas como glTF extras.
 - **Exportación:** `pnpm level:export` genera un `.gltf` por zona más el skyline, con `.bin` y texturas externos (Hermes no carga GLB con texturas embebidas; ver ADR-002), y luego corre `assets:optimize`.
 - **Validador** (`pnpm level:validate`): todo id de `scenario.json` existe en el glTF, cada zona tiene colisión y navmesh, y se cumplen los presupuestos de triángulos y draw calls.
 
