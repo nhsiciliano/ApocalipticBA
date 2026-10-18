@@ -11,6 +11,7 @@ Registro de las decisiones técnicas relevantes del proyecto, en formato MADR co
 | [ADR-003](ADR-003-supabase-backend.md)               | Supabase como backend                    | Aceptado                      |
 | [ADR-004](ADR-004-blender-como-editor-de-niveles.md) | Blender como editor de niveles           | Aceptado                      |
 | [ADR-005](ADR-005-cel-shading-tsl.md)                | Cel-shading con materiales TSL           | Aceptado                      |
+| [ADR-006](ADR-006-contrato-host-core.md)             | Contrato entre el host y `game-core`     | Aceptado                      |
 
 ## Plantilla
 
