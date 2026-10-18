@@ -4,7 +4,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 
 | Hito | Tema | Dificultad | Sesión | Estado | Commit | Fecha |
 |---|---|---|---|---|---|---|
-| 0 | Bootstrap del repo | Bajo | low-dev | En curso | — | 2026-10-18 |
+| 0 | Bootstrap del repo | Bajo | low-dev | Hecho | `1c11fee` | 2026-10-18 |
 | 1 | Monorepo y tooling | Bajo | low-dev | Pendiente | — | — |
 | 2 | `packages/shared` | Bajo | low-dev | Pendiente | — | — |
 | 3 | `packages/game-core` | Medio | mid-dev | Pendiente | — | — |
@@ -23,7 +23,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | Herramienta | Estado (2026-10-18) |
 |---|---|
 | Node 24.20.0 | Instalado |
-| pnpm 12.14.0 | Se instala en Hito 0 |
+| pnpm 12.14.0 | Instalado (Hito 0) |
 | Xcode 27.1 | Instalado |
 | Blender 5.2.2 LTS | Instalado |
 | OrbStack / Docker 29.8 | Instalado |
