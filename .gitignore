@@ -1,0 +1,57 @@
+# Dependencies and build output
+node_modules/
+.pnpm-store/
+.turbo/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Expo / native (CNG: ios/ and android/ are generated)
+.expo/
+.expo-shared/
+apps/mobile/ios/
+apps/mobile/android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Reference images are never published (public repo); keep folder READMEs
+docs/references/**
+!docs/references/**/
+!docs/references/**/README.md
+
+# Raw assets (Genex): keep only the manifest and folder placeholders
+packages/assets/raw/**
+!packages/assets/raw/**/
+!packages/assets/raw/manifest.json
+!packages/assets/raw/**/.gitkeep
+
+# Blender backups
+levels/**/*.blend1
+levels/**/*.blend@
+
+# Tool output
+.astro/
+playwright-report/
+test-results/
+.lighthouseci/
