@@ -7,7 +7,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | 0    | Bootstrap del repo   | Bajo       | low-dev  | Hecho     | `1c11fee`                       | 2026-10-18 |
 | 1    | Monorepo y tooling   | Bajo       | low-dev  | Hecho     | `24c84f6`, `0d4a39b`, `267e7d5` | 2026-10-18 |
 | 2    | `packages/shared`    | Bajo       | low-dev  | Hecho     | `29ca6d7`, `51caac9`, `264cca2` | 2026-10-18 |
-| 3    | `packages/game-core` | Medio      | mid-dev  | Pendiente | —                               | —          |
+| 3    | `packages/game-core` | Medio      | mid-dev  | Hecho     | `a1973a3`…`2d572b0` (6 commits) | 2026-10-18 |
 | 4    | Supabase             | Medio      | mid-dev  | Pendiente | —                               | —          |
 | 5    | Landing              | Medio      | mid-dev  | Pendiente | —                               | —          |
 | 6    | App mobile base      | Alto       | high-dev | Pendiente | —                               | —          |
@@ -30,6 +30,12 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | gh (nhsiciliano)       | Autenticado                     |
 | Cuenta expo.dev        | Pendiente de confirmar (Hito 6) |
 | Login Genex            | Pendiente (Hito 10)             |
+
+## Deuda técnica y pendientes entre hitos
+
+- `shared`: exportar `./fixtures` para que game-core no importe el fixture por ruta relativa (Bajo, low-dev, junto al cierre).
+- Hito 9: evaluar si la latencia de un step entre `commitMove` y triggers/pickups molesta; si sí, agregar `resolveMove` síncrono.
+- Fase 1: el botiquín se acumula pero no cura (falta API de curación).
 
 ## Decisiones pendientes del usuario
 
