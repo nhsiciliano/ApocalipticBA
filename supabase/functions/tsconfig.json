@@ -1,0 +1,10 @@
+{
+  "//": "Solo para tsc y ESLint: Deno usa deno.json. Sin tipos de Node, con las APIs web que expone el edge runtime.",
+  "extends": "@apocalipticba/config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "types": []
+  },
+  "include": ["**/*.ts"]
+}
