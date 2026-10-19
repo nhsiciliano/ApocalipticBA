@@ -12,3 +12,7 @@ autoInstallPeers: true
 allowBuilds:
   # Solo verifica el binario nativo, que ya viene como paquete opcional por plataforma.
   unrs-resolver: false
+  # eas-cli → bunyan → dtrace-provider: el binario es opcional y el fallback en JS alcanza.
+  dtrace-provider: false
+  # eas-cli → protobufjs: el postinstall solo genera stubs opcionales de TypeScript.
+  protobufjs: false

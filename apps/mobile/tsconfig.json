@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "@apocalipticba/config/tsconfig.react-native.json",
+    "./node_modules/expo/tsconfig.base.json"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["@webgpu/types"]
+  },
+  "include": ["index.ts", "app", "src", "vitest.config.ts"]
+}

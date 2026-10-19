@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "ApocalipticBA",
+    "slug": "apocalipticba",
+    "version": "0.1.0",
+    "scheme": "apocalipticba",
+    "orientation": "landscape",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "ar.com.apocalipticba.app",
+      "supportsTablet": true,
+      "requireFullScreen": true
+    },
+    "android": {
+      "package": "ar.com.apocalipticba.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-dev-client",
+      "react-native-webgpu",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "LANDSCAPE"
+        }
+      ]
+    ]
+  }
+}
