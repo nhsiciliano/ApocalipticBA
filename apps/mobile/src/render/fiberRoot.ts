@@ -55,8 +55,12 @@ export function mountFiberRoot(surface: FiberSurface): FiberRoot {
     gl: async () => {
       renderer = surface.createRenderer();
       await renderer.init();
+      // Three resetea `info` en su propio rAF (que corre aunque el loop sea de R3F), así que
+      // los contadores quedaban en cero al leerlos. Se resetean acá, justo antes de dibujar.
+      renderer.info.autoReset = false;
       const renderFrame = renderer.render.bind(renderer);
       renderer.render = (scene: Scene, camera: Camera) => {
+        renderer?.info.reset();
         const result = renderFrame(scene, camera);
         surface.present();
         return result;

@@ -4,7 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "description": "App mobile (Expo 58): navegación placeholder y GameCanvas dual WebGPU / WebGL",
-  "main": "expo-router/entry",
+  "main": "index.ts",
   "scripts": {
     "dev": "expo start --dev-client",
     "start": "expo start --dev-client",

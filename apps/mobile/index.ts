@@ -1,3 +1,3 @@
-// Hermes no provee TextDecoder y Three.js lo usa: el polyfill tiene que ser el primer import.
-import 'fast-text-encoding';
+// Los polyfills de Hermes tienen que cargarse antes que Three.js y Expo Router.
+import './src/polyfills.ts';
 import 'expo-router/entry';
