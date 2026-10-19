@@ -25,6 +25,12 @@
           "initialOrientation": "LANDSCAPE"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "293e38d6-4899-4ffa-813c-805d57437f72"
+      }
+    },
+    "owner": "nhsiciliano"
   }
 }
