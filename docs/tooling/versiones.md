@@ -48,10 +48,10 @@ Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial.
 
 ## Backend
 
-| Paquete               | Versión | Nota                                            |
-| --------------------- | ------- | ----------------------------------------------- |
-| supabase (CLI, npm)   | 2.121.0 | Edge runtime embebido; Postgres necesita Docker |
-| @supabase/supabase-js | 2.118.0 |                                                 |
+| Paquete               | Versión | Nota                                                                                                                                                                    |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| supabase (CLI, npm)   | 2.121.0 | Edge runtime embebido; Postgres necesita Docker. Binario como paquete opcional por plataforma (sin postinstall). Trae Postgres 17.11 y edge-runtime 1.77.4 (Deno 2.1.4) |
+| @supabase/supabase-js | 2.118.0 | Tests de RLS en Node; en Deno vía `npm:` en `supabase/functions/deno.json`                                                                                              |
 
 ## Calidad y tooling
 
