@@ -1,16 +1,26 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ROUTES } from '../src/navigation/routes.ts';
+import { isRenderBackend } from '../src/render/backend.ts';
 import { GameCanvas } from '../src/render/GameCanvas.tsx';
 import { MeteoriteCube } from '../src/render/scenes/MeteoriteCube.tsx';
+import { useSettings } from '../src/store/settings.ts';
 import { Button } from '../src/ui/Button.tsx';
 import { SPACING } from '../src/ui/theme.ts';
 
 export default function PlayScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  // Override para pruebas por deep link (`apocalipticba://play?backend=webgl`): se persiste
+  // como si se hubiera elegido en Ajustes.
+  const { backend } = useLocalSearchParams<{ backend?: string }>();
+
+  useEffect(() => {
+    if (isRenderBackend(backend)) useSettings.getState().setRenderBackend(backend);
+  }, [backend]);
 
   return (
     <View style={styles.root}>

@@ -46,11 +46,47 @@ export class ExpoGLCanvas implements SurfaceCanvas {
   }
 }
 
+type TypedArrayCtor = Float32ArrayConstructor | Int32ArrayConstructor | Uint32ArrayConstructor;
+
+/**
+ * expo-gl implementa `clearBuffer{fv,iv,uiv}` solo con typed arrays (lanza
+ * `unordered_map::at: key not found` con un array común), mientras que el `WebGLBackend` de
+ * Three les pasa arrays literales. Se envuelven esos métodos para convertir el argumento.
+ * Idempotente: marca el contexto para no envolverlo dos veces.
+ */
+const PATCHED = Symbol.for('apocalipticba.expo-gl-typed-arrays');
+
+export function patchExpoGLContext(gl: ExpoWebGLRenderingContext): ExpoWebGLRenderingContext {
+  const target = gl as ExpoWebGLRenderingContext & { [PATCHED]?: true };
+  if (target[PATCHED]) return gl;
+  const wrap = (
+    name: 'clearBufferfv' | 'clearBufferiv' | 'clearBufferuiv',
+    Ctor: TypedArrayCtor,
+  ) => {
+    const original = gl[name].bind(gl) as unknown as (
+      buffer: number,
+      drawbuffer: number,
+      values: ArrayLike<number>,
+      srcOffset?: number,
+    ) => void;
+    target[name] = (buffer, drawbuffer, values, srcOffset) => {
+      const typed = ArrayBuffer.isView(values) ? values : new Ctor(values);
+      original(buffer, drawbuffer, typed, srcOffset);
+    };
+  };
+  wrap('clearBufferfv', Float32Array);
+  wrap('clearBufferiv', Int32Array);
+  wrap('clearBufferuiv', Uint32Array);
+  target[PATCHED] = true;
+  return gl;
+}
+
 /**
  * Plan B: el mismo `WebGPURenderer` con backend WebGL 2 sobre el contexto de expo-gl.
  * `three.webgpu.js` no incluye `WebGLRenderer`, y así los materiales TSL sirven en ambos.
  */
 export function makeWebGLRenderer(gl: ExpoWebGLRenderingContext, canvas: ExpoGLCanvas) {
+  patchExpoGLContext(gl);
   return new WebGPURenderer({
     forceWebGL: true,
     antialias: false,
