@@ -8,7 +8,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | 1    | Monorepo y tooling   | Bajo       | low-dev  | Hecho     | `24c84f6`, `0d4a39b`, `267e7d5` | 2026-10-18 |
 | 2    | `packages/shared`    | Bajo       | low-dev  | Hecho     | `29ca6d7`, `51caac9`, `264cca2` | 2026-10-18 |
 | 3    | `packages/game-core` | Medio      | mid-dev  | Hecho     | `a1973a3`…`2d572b0` (6 commits) | 2026-10-18 |
-| 4    | Supabase             | Medio      | mid-dev  | Pendiente | —                               | —          |
+| 4    | Supabase             | Medio      | mid-dev  | Hecho     | `f7ea514`…`025f422` (8 commits) | 2026-10-19 |
 | 5    | Landing              | Medio      | mid-dev  | Pendiente | —                               | —          |
 | 6    | App mobile base      | Alto       | high-dev | Pendiente | —                               | —          |
 | 7    | Spike de render      | Alto       | high-dev | Pendiente | —                               | —          |
@@ -33,9 +33,12 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 
 ## Deuda técnica y pendientes entre hitos
 
+- `shared`: actualizar `src/db/README.md` (ya no es placeholder: se regenera con `pnpm db:types` con el stack arriba) (Bajo, low-dev, junto al cierre).
 - `shared`: exportar `./fixtures` para que game-core no importe el fixture por ruta relativa (Bajo, low-dev, junto al cierre).
 - Hito 9: evaluar si la latencia de un step entre `commitMove` y triggers/pickups molesta; si sí, agregar `resolveMove` síncrono.
 - Fase 1: el botiquín se acumula pero no cura (falta API de curación).
+- Fase 2 (Supabase): lógica real de los tres stubs, Google/Apple auth, telemetría vía función, evaluar `@supabase/server` con `verify_jwt = false`, confirmar bundling de `functions deploy` con el import map (fallback de copia en ADR-007).
+- Desarrollo local: `supabase start` necesita `supabase/.env` (copiar de `.env.example`) para que `waitlist-signup` arranque (`RATE_LIMIT_SALT` obligatoria).
 
 ## Decisiones pendientes del usuario
 
