@@ -1,0 +1,7 @@
+{
+  "extends": "@apocalipticba/config/tsconfig.node.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["tests", "scripts", "*.ts", "functions/_shared/deno.d.ts"]
+}

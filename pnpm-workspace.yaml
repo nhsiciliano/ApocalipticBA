@@ -2,6 +2,7 @@ packages:
   - apps/*
   - packages/*
   - tools/*
+  - supabase
 
 # pnpm 11+ solo lee auth/registry desde .npmrc: el resto de la config vive acá.
 engineStrict: true
