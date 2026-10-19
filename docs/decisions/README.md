@@ -13,6 +13,7 @@ Registro de las decisiones técnicas relevantes del proyecto, en formato MADR co
 | [ADR-005](ADR-005-cel-shading-tsl.md)                | Cel-shading con materiales TSL           | Aceptado                      |
 | [ADR-006](ADR-006-contrato-host-core.md)             | Contrato entre el host y `game-core`     | Aceptado                      |
 | [ADR-007](ADR-007-edge-functions-y-shared.md)        | Edge Functions que importan `shared`     | Aceptado                      |
+| [ADR-008](ADR-008-estructura-app-mobile.md)          | Estructura de la app mobile              | Aceptado                      |
 
 ## Plantilla
 

@@ -1,6 +1,6 @@
 # Versiones fijadas del stack
 
-Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial. Toda dependencia se fija con versión exacta (o el rango `~` que impone Expo para sus paquetes). Antes de agregar o actualizar una librería, consultar su documentación vigente vía Context7 y actualizar esta tabla.
+Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial (filas de Mobile revisadas el 2026-10-19 al armar `apps/mobile`). Toda dependencia se fija con versión exacta (o el rango `~` que impone Expo para sus paquetes). Antes de agregar o actualizar una librería, consultar su documentación vigente vía Context7 y actualizar esta tabla.
 
 ## Runtime y gestores
 
@@ -16,27 +16,33 @@ Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial.
 
 ## Mobile
 
-| Paquete                                                                              | Versión                                    | Nota                                                                                         |
-| ------------------------------------------------------------------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| expo                                                                                 | ~58.0.14                                   | React Native 0.88.0, React 19.3.0, `@types/react` ~19.3.0                                    |
-| expo-router                                                                          | ~58.0.23                                   |                                                                                              |
-| expo-dev-client                                                                      | ~58.0.14                                   |                                                                                              |
-| expo-gl                                                                              | ~58.0.3                                    | Plan B de render                                                                             |
-| expo-haptics / expo-audio / expo-sensors / expo-screen-orientation / expo-keep-awake | 58.0.7 / 58.0.9 / 58.0.4 / 58.0.3 / 58.0.3 |                                                                                              |
-| expo-asset / expo-file-system                                                        | 58.0.16 / 58.0.9                           | Peers de R3F nativo                                                                          |
-| react-native-reanimated                                                              | 4.7.1                                      | Peer de react-native-webgpu                                                                  |
-| react-native-worklets                                                                | 0.13.0                                     | Peer de react-native-webgpu                                                                  |
-| react-native-gesture-handler                                                         | ~3.3.0                                     | Versión del template Expo 58                                                                 |
-| **react-native-webgpu**                                                              | 0.16.1                                     | Reemplaza a `react-native-wgpu` (deprecado). New Architecture obligatoria. Android minSdk 26 |
-| three / @types/three                                                                 | 0.186.1 / 0.186.0                          | Importar siempre desde `three/webgpu` y `three/tsl`                                          |
-| @react-three/fiber                                                                   | 9.8.2                                      | Necesita patch de `package.json` (`"react-native"` → bundle web) con `patch-package`         |
-| three-mesh-bvh                                                                       | 0.9.16                                     |                                                                                              |
-| miniplex                                                                             | 2.0.0                                      |                                                                                              |
-| zustand                                                                              | 5.0.15                                     |                                                                                              |
-| @tanstack/react-query                                                                | 5.104.4                                    |                                                                                              |
-| react-native-mmkv                                                                    | 4.3.2                                      | Alternativa: expo-sqlite 58.0.13                                                             |
-| fast-text-encoding                                                                   | última                                     | Polyfill de `TextDecoder` para Hermes                                                        |
-| eas-cli                                                                              | 25.2.0                                     | Como devDependency                                                                           |
+| Paquete                                                                              | Versión                                    | Nota                                                                                                                                  |
+| ------------------------------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| expo                                                                                 | ~58.0.14                                   | React Native 0.88.0, React 19.3.0, `@types/react` 19.3.0                                                                              |
+| expo-router                                                                          | ~58.0.23                                   | Peers: expo-constants 58.0.12, expo-linking 58.0.13, react-native-screens 4.30.0, react-native-safe-area-context 5.10.1               |
+| expo-dev-client                                                                      | ~58.0.14                                   |                                                                                                                                       |
+| expo-gl                                                                              | ~58.0.3                                    | Plan B de render                                                                                                                      |
+| expo-status-bar                                                                      | 58.0.3                                     |                                                                                                                                       |
+| expo-haptics / expo-audio / expo-sensors / expo-screen-orientation / expo-keep-awake | 58.0.7 / 58.0.9 / 58.0.4 / 58.0.3 / 58.0.3 | En Hito 6 solo se instaló expo-screen-orientation                                                                                     |
+| expo-asset / expo-file-system                                                        | 58.0.16 / 58.0.9                           | Peers opcionales de R3F; instalados para fijar versión                                                                                |
+| babel-preset-expo                                                                    | ~58.0.17                                   | devDependency: `babel.config.js` explícito (incluye el plugin de worklets)                                                            |
+| react-native-reanimated                                                              | 4.7.1                                      | Peer de react-native-webgpu                                                                                                           |
+| react-native-worklets                                                                | 0.13.0                                     | Peer de react-native-webgpu                                                                                                           |
+| react-native-gesture-handler                                                         | ~3.3.0                                     | Versión del template Expo 58                                                                                                          |
+| react-native-screens / react-native-safe-area-context                                | 4.30.0 / 5.10.1                            | Peers de expo-router                                                                                                                  |
+| **react-native-webgpu**                                                              | 0.16.1                                     | Reemplaza a `react-native-wgpu` (deprecado). New Architecture obligatoria. Android minSdk 26. Existe 0.17.0 (2026-10-18), no adoptada |
+| @webgpu/types                                                                        | 0.1.65                                     | Tipos globales `GPU*` que referencia react-native-webgpu (`types` en tsconfig)                                                        |
+| three / @types/three                                                                 | 0.186.1 / 0.186.0                          | Importar siempre desde `three/webgpu` y `three/tsl`. `three.webgpu.js` no exporta `WebGLRenderer`                                     |
+| @react-three/fiber                                                                   | 9.8.2                                      | Sin patch: Metro lo resuelve al bundle web con `mainFields: ['module']` (ADR-008)                                                     |
+| three-mesh-bvh                                                                       | 0.9.16                                     |                                                                                                                                       |
+| miniplex                                                                             | 2.0.0                                      |                                                                                                                                       |
+| zustand                                                                              | 5.0.15                                     |                                                                                                                                       |
+| @tanstack/react-query                                                                | 5.104.4                                    |                                                                                                                                       |
+| react-native-mmkv                                                                    | 4.3.2                                      | Alternativa: expo-sqlite 58.0.13                                                                                                      |
+| react-native-nitro-modules                                                           | 0.37.1                                     | Peer de react-native-mmkv 4 (MMKV 4.3.2 se publicó contra 0.35.9; 0.37.1 es la vigente para RN 0.88)                                  |
+| fast-text-encoding                                                                   | 1.0.6                                      | Polyfill de `TextDecoder` para Hermes; primer import en `index.ts`                                                                    |
+| eslint-plugin-react-hooks                                                            | 7.1.1                                      | Soporta ESLint 10. `eslint-plugin-react` 7.37.5 no (usa `context.getFilename`): no se usa                                             |
+| eas-cli                                                                              | 25.2.0                                     | Como devDependency (`pnpm exec eas`)                                                                                                  |
 
 ## Landing
 
@@ -69,7 +75,7 @@ Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial.
 | @types/node            | 24.19.2 (alineado a Node 24, no la 26.x) |
 | @gltf-transform/cli    | 4.5.1                                    |
 
-Nota pnpm 12: `.npmrc` solo se usa para auth/registry. `engineStrict`, `autoInstallPeers` y `allowBuilds` viven en `pnpm-workspace.yaml`. Todo paquete con script de build (esbuild, sharp, etc.) necesita una entrada explícita en `allowBuilds` o la instalación falla.
+Nota pnpm 12: `.npmrc` solo se usa para auth/registry. `engineStrict`, `autoInstallPeers` y `allowBuilds` viven en `pnpm-workspace.yaml`. Todo paquete con script de build (esbuild, sharp, etc.) necesita una entrada explícita en `allowBuilds` o la instalación falla. Hoy están listados en `false` (no se ejecutan) `unrs-resolver`, y `dtrace-provider` y `protobufjs`, que arrastra `eas-cli`.
 
 ## Assets
 
