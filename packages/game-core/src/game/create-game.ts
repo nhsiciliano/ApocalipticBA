@@ -1,38 +1,38 @@
 import type { CheckpointId, PickupItem, Scenario, ZoneId } from '@apocalipticba/shared';
 
-import { createContext, type GameContext } from './context';
-import { DEFAULT_GAME_SETTINGS, type GameSettings } from './settings';
-import { parseSnapshot } from './snapshot';
-import { endEncounter } from '../actions/run-actions';
-import type { AudioAdapter } from '../adapters/audio';
-import type { HapticsAdapter } from '../adapters/haptics';
-import type { InputAdapter } from '../adapters/input';
-import { createSeededRng, type Rng } from '../adapters/rng';
-import type { StorageAdapter } from '../adapters/storage';
-import { createEventBus } from '../events/event-bus';
-import type { GameEventBus, GameEventMap, GamePhase } from '../events/game-events';
-import type { Vec3 } from '../math/vec3';
-import { persist, restore, saveKey } from '../systems/checkpoints';
-import { flashlightSystem } from '../systems/flashlight';
-import { damage, respawn } from '../systems/health';
+import { createContext, type GameContext } from './context.ts';
+import { DEFAULT_GAME_SETTINGS, type GameSettings } from './settings.ts';
+import { parseSnapshot } from './snapshot.ts';
+import { endEncounter } from '../actions/run-actions.ts';
+import type { AudioAdapter } from '../adapters/audio.ts';
+import type { HapticsAdapter } from '../adapters/haptics.ts';
+import type { InputAdapter } from '../adapters/input.ts';
+import { createSeededRng, type Rng } from '../adapters/rng.ts';
+import type { StorageAdapter } from '../adapters/storage.ts';
+import { createEventBus } from '../events/event-bus.ts';
+import type { GameEventBus, GameEventMap, GamePhase } from '../events/game-events.ts';
+import type { Vec3 } from '../math/vec3.ts';
+import { persist, restore, saveKey } from '../systems/checkpoints.ts';
+import { flashlightSystem } from '../systems/flashlight.ts';
+import { damage, respawn } from '../systems/health.ts';
 import {
   closeNote,
   currentInteraction,
   interactionSystem,
   setCandidate,
   type InteractionCurrent,
-} from '../systems/interaction';
-import { currentObjective } from '../systems/objectives';
-import { pickupsSystem } from '../systems/pickups';
+} from '../systems/interaction.ts';
+import { currentObjective } from '../systems/objectives.ts';
+import { pickupsSystem } from '../systems/pickups.ts';
 import {
   commitMove,
   playerMovementSystem,
   teleport,
   type MoveResult,
-} from '../systems/player-movement';
-import { onewaysSystem, triggersSystem } from '../systems/triggers';
-import type { SceneNode } from '../world/scene-nodes';
-import { registerZoneNodes, setCurrentZone, unregisterZone } from '../world/zones';
+} from '../systems/player-movement.ts';
+import { onewaysSystem, triggersSystem } from '../systems/triggers.ts';
+import type { SceneNode } from '../world/scene-nodes.ts';
+import { registerZoneNodes, setCurrentZone, unregisterZone } from '../world/zones.ts';
 
 export interface GameAdapters {
   input: InputAdapter;

@@ -3,13 +3,13 @@ import { parseScenario, ZONE_IDS, type Scenario, type ZoneId } from '@apocalipti
 import {
   minimalScenarioJson,
   withChanges,
-} from '../../../shared/src/scenario/__fixtures__/minimal';
-import { createNullAdapters, type NullAdapters } from '../adapters/null-adapters';
-import type { GameEventMap, GameEventType } from '../events/game-events';
-import { createGame, type Game } from '../game/create-game';
-import type { GameSettings } from '../game/settings';
-import type { Vec3 } from '../math/vec3';
-import { expectedNodesForZone, sceneNodeKindForId, type SceneNode } from '../world/scene-nodes';
+} from '../../../shared/src/scenario/__fixtures__/minimal.ts';
+import { createNullAdapters, type NullAdapters } from '../adapters/null-adapters.ts';
+import type { GameEventMap, GameEventType } from '../events/game-events.ts';
+import { createGame, type Game } from '../game/create-game.ts';
+import type { GameSettings } from '../game/settings.ts';
+import type { Vec3 } from '../math/vec3.ts';
+import { expectedNodesForZone, sceneNodeKindForId, type SceneNode } from '../world/scene-nodes.ts';
 
 export const DT = 1 / 60;
 

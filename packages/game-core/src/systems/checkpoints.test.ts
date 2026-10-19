@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { createNullAdapters } from '../adapters/null-adapters';
-import type { CheckpointSnapshot } from '../game/snapshot';
-import { createTestGame } from '../test-utils/fixtures';
+import { createNullAdapters } from '../adapters/null-adapters.ts';
+import type { CheckpointSnapshot } from '../game/snapshot.ts';
+import { createTestGame } from '../test-utils/fixtures.ts';
 
 const INSIDE_4A = [0, 0, -20] as const;
 const CHK_4A_POSITION = [0, 0, -20] as const;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ID_PATTERNS } from './ids';
+import { ID_PATTERNS } from './ids.ts';
 
 describe('ID_PATTERNS', () => {
   it.each([

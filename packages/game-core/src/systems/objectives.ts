@@ -1,6 +1,6 @@
 import type { ObjectiveId } from '@apocalipticba/shared';
 
-import { setPhase, type GameContext } from '../game/context';
+import { setPhase, type GameContext } from '../game/context.ts';
 
 export function currentObjective(ctx: GameContext): { id: ObjectiveId; text: string } | null {
   const objective = ctx.scenario.objectives[ctx.run.objectiveIndex];

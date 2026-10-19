@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { createNeutralIntent } from './input';
-import { createNullAdapters } from './null-adapters';
-import { createSeededRng } from './rng';
+import { createNeutralIntent } from './input.ts';
+import { createNullAdapters } from './null-adapters.ts';
+import { createSeededRng } from './rng.ts';
 
 describe('createSeededRng', () => {
   it('produces the same sequence for the same seed', () => {

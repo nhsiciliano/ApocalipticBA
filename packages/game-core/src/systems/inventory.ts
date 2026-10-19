@@ -1,6 +1,6 @@
 import type { Pickup, PickupItem } from '@apocalipticba/shared';
 
-import type { GameContext } from '../game/context';
+import type { GameContext } from '../game/context.ts';
 
 /** Items que se tienen o no (cantidad 1); el resto se acumula. */
 const UNIQUE_ITEMS: ReadonlySet<PickupItem> = new Set(['pistola', 'escopeta', 'linterna']);

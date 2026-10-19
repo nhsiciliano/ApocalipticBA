@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { ZodError } from 'zod';
 
-import { minimalScenarioJson, withChanges } from './__fixtures__/minimal';
-import { parseScenario, safeParseScenario } from './schema';
+import { minimalScenarioJson, withChanges } from './__fixtures__/minimal.ts';
+import { parseScenario, safeParseScenario } from './schema.ts';
 
 function issuePaths(input: unknown): string[] {
   const result = safeParseScenario(input);

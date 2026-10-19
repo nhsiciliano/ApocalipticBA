@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { METEORITE_PALETTE } from './meteorite-palette';
-import { QUALITY_LEVELS } from './quality';
+import { METEORITE_PALETTE } from './meteorite-palette.ts';
+import { QUALITY_LEVELS } from './quality.ts';
 
 describe('METEORITE_PALETTE', () => {
   it('uses valid hex colors for every color key', () => {

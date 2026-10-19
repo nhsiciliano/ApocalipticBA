@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { aabbIntersectsVerticalSegment } from './aabb';
+import { aabbIntersectsVerticalSegment } from './aabb.ts';
 import {
   add,
   distance,
@@ -12,7 +12,7 @@ import {
   sub,
   vec3,
   yawTowards,
-} from './vec3';
+} from './vec3.ts';
 
 describe('vec3', () => {
   it('basic helpers return new vectors', () => {

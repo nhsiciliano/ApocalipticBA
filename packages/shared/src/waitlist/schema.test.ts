@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { WaitlistSignupResponseSchema, WaitlistSignupSchema, isHoneypotTripped } from './schema';
+import { WaitlistSignupResponseSchema, WaitlistSignupSchema, isHoneypotTripped } from './schema.ts';
 
 describe('WaitlistSignupSchema', () => {
   it('normalizes the email (trim + lowercase)', () => {

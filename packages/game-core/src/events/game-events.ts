@@ -9,7 +9,7 @@ import type {
   ZoneId,
 } from '@apocalipticba/shared';
 
-import type { EventBus } from './event-bus';
+import type { EventBus } from './event-bus.ts';
 
 export type GamePhase = 'playing' | 'reading_note' | 'climbing' | 'dead' | 'finished';
 export type InteractableKind = Interactable['kind'];

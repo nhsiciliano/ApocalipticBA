@@ -15,17 +15,17 @@ import type {
   ZoneId,
 } from '@apocalipticba/shared';
 
-import { MAX_HEALTH, type GameSettings } from './settings';
-import type { RestorePoint } from './snapshot';
-import type { AudioAdapter } from '../adapters/audio';
-import type { HapticsAdapter } from '../adapters/haptics';
-import { createNeutralIntent, type InputAdapter } from '../adapters/input';
-import type { Rng } from '../adapters/rng';
-import type { StorageAdapter } from '../adapters/storage';
-import { createEcs, type Ecs, type Entity, type PlayerEntity } from '../ecs/world';
-import type { GameEventBus, GamePhase } from '../events/game-events';
-import { resolveText } from '../i18n/text';
-import { ZERO } from '../math/vec3';
+import { MAX_HEALTH, type GameSettings } from './settings.ts';
+import type { RestorePoint } from './snapshot.ts';
+import type { AudioAdapter } from '../adapters/audio.ts';
+import type { HapticsAdapter } from '../adapters/haptics.ts';
+import { createNeutralIntent, type InputAdapter } from '../adapters/input.ts';
+import type { Rng } from '../adapters/rng.ts';
+import type { StorageAdapter } from '../adapters/storage.ts';
+import { createEcs, type Ecs, type Entity, type PlayerEntity } from '../ecs/world.ts';
+import type { GameEventBus, GamePhase } from '../events/game-events.ts';
+import { resolveText } from '../i18n/text.ts';
+import { ZERO } from '../math/vec3.ts';
 
 export interface ScenarioIndex {
   zones: ReadonlyMap<ZoneId, Zone>;

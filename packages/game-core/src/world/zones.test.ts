@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectedNodesForZone, sceneNodeKindForId } from './scene-nodes';
-import { createNullAdapters } from '../adapters/null-adapters';
-import { createGame } from '../game/create-game';
+import { expectedNodesForZone, sceneNodeKindForId } from './scene-nodes.ts';
+import { createNullAdapters } from '../adapters/null-adapters.ts';
+import { createGame } from '../game/create-game.ts';
 import {
   createTestGame,
   minimalScenario,
   nodesForZone,
   recordEvents,
-} from '../test-utils/fixtures';
+} from '../test-utils/fixtures.ts';
 
 describe('scene node helpers', () => {
   it('expectedNodesForZone lists the gameplay nodes of a zone', () => {

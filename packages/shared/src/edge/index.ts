@@ -1,3 +1,3 @@
-export * from './start-session';
-export * from './submit-score';
-export * from './sync-progress';
+export * from './start-session.ts';
+export * from './submit-score.ts';
+export * from './sync-progress.ts';

@@ -1,12 +1,12 @@
 import type { AudioCueId, Interactable } from '@apocalipticba/shared';
 
-import { startClimb } from './climb';
-import { collectPickup, hasItem } from './inventory';
-import { runActions } from '../actions/run-actions';
-import type { PlayerIntent } from '../adapters/input';
-import type { InteractableKind } from '../events/game-events';
-import { playerHeight, setPhase, type GameContext } from '../game/context';
-import { distanceToVerticalSegment } from '../math/vec3';
+import { startClimb } from './climb.ts';
+import { collectPickup, hasItem } from './inventory.ts';
+import { runActions } from '../actions/run-actions.ts';
+import type { PlayerIntent } from '../adapters/input.ts';
+import type { InteractableKind } from '../events/game-events.ts';
+import { playerHeight, setPhase, type GameContext } from '../game/context.ts';
+import { distanceToVerticalSegment } from '../math/vec3.ts';
 
 type HoldDef = Extract<Interactable, { kind: 'hold' }>;
 type NoteInteractable = Extract<Interactable, { kind: 'note' }>;

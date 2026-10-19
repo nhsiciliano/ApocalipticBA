@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTestGame, scenarioWith } from '../test-utils/fixtures';
+import { createTestGame, scenarioWith } from '../test-utils/fixtures.ts';
 
 const INSIDE_4A = [0, 0, -20] as const;
 const OUTSIDE = [0, 0, -10] as const;

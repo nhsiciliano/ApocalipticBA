@@ -5,8 +5,8 @@ import {
   type ZoneId,
 } from '@apocalipticba/shared';
 
-import type { Aabb } from '../math/aabb';
-import type { Vec3 } from '../math/vec3';
+import type { Aabb } from '../math/aabb.ts';
+import type { Vec3 } from '../math/vec3.ts';
 
 /**
  * Nodo de gameplay leído del glTF de una zona. El host solo pasa nodos con prefijo de gameplay

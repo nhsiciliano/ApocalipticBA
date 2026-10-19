@@ -1,6 +1,6 @@
-import { restore } from './checkpoints';
-import { setPhase, type GameContext } from '../game/context';
-import { ZERO } from '../math/vec3';
+import { restore } from './checkpoints.ts';
+import { setPhase, type GameContext } from '../game/context.ts';
+import { ZERO } from '../math/vec3.ts';
 
 /** Aplica daño. A 0 de vida el jugador pasa a `dead`; el host decide cuándo llamar `respawn`. */
 export function damage(ctx: GameContext, amount: number): void {

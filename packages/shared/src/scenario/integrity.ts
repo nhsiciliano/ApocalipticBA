@@ -1,5 +1,5 @@
-import { BACKGROUND_ZONE, ID_PATTERNS } from './ids';
-import type { Action, ScenarioBase } from './schema';
+import { BACKGROUND_ZONE, ID_PATTERNS } from './ids.ts';
+import type { Action, ScenarioBase } from './schema.ts';
 
 type IssuePath = (string | number)[];
 

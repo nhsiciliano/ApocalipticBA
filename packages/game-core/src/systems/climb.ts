@@ -1,8 +1,8 @@
 import type { Interactable } from '@apocalipticba/shared';
 
-import { runActions } from '../actions/run-actions';
-import { setPhase, type GameContext } from '../game/context';
-import { distance, lerp, sub, yawTowards, ZERO, type Vec3 } from '../math/vec3';
+import { runActions } from '../actions/run-actions.ts';
+import { setPhase, type GameContext } from '../game/context.ts';
+import { distance, lerp, sub, yawTowards, ZERO, type Vec3 } from '../math/vec3.ts';
 
 type ClimbDef = Extract<Interactable, { kind: 'climb' }>;
 

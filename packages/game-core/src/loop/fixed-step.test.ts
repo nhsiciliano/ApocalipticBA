@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { createFixedStepLoop } from './fixed-step';
+import { createFixedStepLoop } from './fixed-step.ts';
 
 const STEP = 1000 / 60;
 

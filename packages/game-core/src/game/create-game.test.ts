@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { createGame } from './create-game';
-import { DEFAULT_GAME_SETTINGS } from './settings';
-import { createNullAdapters } from '../adapters/null-adapters';
-import { createSeededRng } from '../adapters/rng';
-import { createTestGame, minimalScenario, scenarioWith } from '../test-utils/fixtures';
+import { createGame } from './create-game.ts';
+import { DEFAULT_GAME_SETTINGS } from './settings.ts';
+import { createNullAdapters } from '../adapters/null-adapters.ts';
+import { createSeededRng } from '../adapters/rng.ts';
+import { createTestGame, minimalScenario, scenarioWith } from '../test-utils/fixtures.ts';
 
 describe('createGame', () => {
   it('exposes a read-only state view with sane defaults', () => {

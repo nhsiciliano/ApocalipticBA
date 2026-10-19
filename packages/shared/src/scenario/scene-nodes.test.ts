@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { minimalScenarioJson } from './__fixtures__/minimal';
-import { collectSceneNodeIds } from './scene-nodes';
-import { parseScenario } from './schema';
+import { minimalScenarioJson } from './__fixtures__/minimal.ts';
+import { collectSceneNodeIds } from './scene-nodes.ts';
+import { parseScenario } from './schema.ts';
 
 describe('collectSceneNodeIds', () => {
   const byZone = collectSceneNodeIds(parseScenario(minimalScenarioJson));

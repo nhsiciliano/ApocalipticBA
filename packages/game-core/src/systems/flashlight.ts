@@ -1,6 +1,6 @@
-import { hasItem } from './inventory';
-import type { PlayerIntent } from '../adapters/input';
-import type { GameContext } from '../game/context';
+import { hasItem } from './inventory.ts';
+import type { PlayerIntent } from '../adapters/input.ts';
+import type { GameContext } from '../game/context.ts';
 
 /** La linterna solo se prende si está en el inventario. */
 export function flashlightSystem(ctx: GameContext, intent: PlayerIntent): void {

@@ -1,6 +1,6 @@
-import { collectPickup } from './inventory';
-import { playerHeight, type GameContext } from '../game/context';
-import { distanceToVerticalSegment } from '../math/vec3';
+import { collectPickup } from './inventory.ts';
+import { playerHeight, type GameContext } from '../game/context.ts';
+import { distanceToVerticalSegment } from '../math/vec3.ts';
 
 /**
  * Recoge por proximidad: el pickup entra al inventario cuando el eje de la cápsula queda a menos de

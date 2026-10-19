@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { createGame } from './create-game';
-import { createNullAdapters } from '../adapters/null-adapters';
-import { fullRunScenario, nodesForZone, recordEvents } from '../test-utils/fixtures';
+import { createGame } from './create-game.ts';
+import { createNullAdapters } from '../adapters/null-adapters.ts';
+import { fullRunScenario, nodesForZone, recordEvents } from '../test-utils/fixtures.ts';
 
 /**
  * Recorrido sintético del escenario 1 (fixture de shared + segunda carta en Z5), con un host falso

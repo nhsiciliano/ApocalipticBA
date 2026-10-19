@@ -1,11 +1,11 @@
 import type { CheckpointId, ZoneId } from '@apocalipticba/shared';
 
-import { currentObjective } from './objectives';
-import { setPhase, type GameContext } from '../game/context';
-import type { CheckpointSnapshot, RestorePoint } from '../game/snapshot';
-import { aabbIntersectsVerticalSegment } from '../math/aabb';
-import { ZERO } from '../math/vec3';
-import { requestPreload, unloadZones } from '../world/zones';
+import { currentObjective } from './objectives.ts';
+import { setPhase, type GameContext } from '../game/context.ts';
+import type { CheckpointSnapshot, RestorePoint } from '../game/snapshot.ts';
+import { aabbIntersectsVerticalSegment } from '../math/aabb.ts';
+import { ZERO } from '../math/vec3.ts';
+import { requestPreload, unloadZones } from '../world/zones.ts';
 
 export function saveKey(ctx: GameContext): string {
   return `save:${ctx.scenario.id}`;

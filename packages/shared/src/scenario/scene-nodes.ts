@@ -1,5 +1,5 @@
-import { ZONE_IDS, type ZoneId } from './ids';
-import type { Scenario } from './schema';
+import { ZONE_IDS, type ZoneId } from './ids.ts';
+import type { Scenario } from './schema.ts';
 
 export type SceneNodeIdsByZone = Record<ZoneId, Set<string>>;
 

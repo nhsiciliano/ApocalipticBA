@@ -8,9 +8,9 @@ import type {
 } from '@apocalipticba/shared';
 import { World, type With } from 'miniplex';
 
-import type { PlayerIntent } from '../adapters/input';
-import type { Aabb } from '../math/aabb';
-import type { Vec3 } from '../math/vec3';
+import type { PlayerIntent } from '../adapters/input.ts';
+import type { Aabb } from '../math/aabb.ts';
+import type { Vec3 } from '../math/vec3.ts';
 
 /**
  * Componentes del ECS. Son internos: nada de esto se exporta desde el paquete. Los vectores son

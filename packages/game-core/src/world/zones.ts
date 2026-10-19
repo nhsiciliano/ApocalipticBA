@@ -5,9 +5,9 @@ import {
   expectedNodesForZone,
   sceneNodeKindForId,
   type SceneNode,
-} from './scene-nodes';
-import type { Entity } from '../ecs/world';
-import type { GameContext } from '../game/context';
+} from './scene-nodes.ts';
+import type { Entity } from '../ecs/world.ts';
+import type { GameContext } from '../game/context.ts';
 
 function lookup<T>(map: ReadonlyMap<string, T>, id: string): T {
   const value = map.get(id);

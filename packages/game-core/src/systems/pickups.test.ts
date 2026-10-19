@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTestGame, scenarioWith } from '../test-utils/fixtures';
+import { createTestGame, scenarioWith } from '../test-utils/fixtures.ts';
 
 const ammoScenario = () =>
   scenarioWith(

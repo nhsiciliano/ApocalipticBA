@@ -13,8 +13,8 @@ import {
   SpawnIdSchema,
   TriggerIdSchema,
   ZoneIdSchema,
-} from './ids';
-import { checkScenarioIntegrity } from './integrity';
+} from './ids.ts';
+import { checkScenarioIntegrity } from './integrity.ts';
 
 export const LocalizedTextSchema = z.strictObject({
   'es-AR': z.string().min(1),

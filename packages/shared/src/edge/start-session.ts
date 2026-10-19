@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { ID_PATTERNS } from '../scenario/ids';
+import { ID_PATTERNS } from '../scenario/ids.ts';
 
 /** Semver 2.0.0 (https://semver.org), con prerelease y build opcionales. */
 export const SEMVER_PATTERN =

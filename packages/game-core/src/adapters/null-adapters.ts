@@ -1,9 +1,9 @@
 import type { AudioCueId } from '@apocalipticba/shared';
 
-import type { AudioAdapter, AudioPlayOptions } from './audio';
-import type { HapticImpact, HapticNotification, HapticsAdapter } from './haptics';
-import { createNeutralIntent, type InputAdapter, type PlayerIntent } from './input';
-import type { StorageAdapter } from './storage';
+import type { AudioAdapter, AudioPlayOptions } from './audio.ts';
+import type { HapticImpact, HapticNotification, HapticsAdapter } from './haptics.ts';
+import { createNeutralIntent, type InputAdapter, type PlayerIntent } from './input.ts';
+import type { StorageAdapter } from './storage.ts';
 
 type PulseKey = 'interact' | 'flashlightToggle' | 'jump';
 

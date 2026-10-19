@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTestGame, DT } from '../test-utils/fixtures';
+import { createTestGame, DT } from '../test-utils/fixtures.ts';
 
 const SPAWN = [100, 0, 0] as const;
 

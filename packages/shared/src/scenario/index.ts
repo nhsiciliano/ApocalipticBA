@@ -1,3 +1,3 @@
-export * from './ids';
-export * from './scene-nodes';
-export * from './schema';
+export * from './ids.ts';
+export * from './scene-nodes.ts';
+export * from './schema.ts';

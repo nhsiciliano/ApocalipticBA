@@ -1,7 +1,7 @@
-import { updateClimb } from './climb';
-import type { PlayerIntent } from '../adapters/input';
-import type { GameContext } from '../game/context';
-import { add, isFiniteVec3, scale, ZERO, type Vec3 } from '../math/vec3';
+import { updateClimb } from './climb.ts';
+import type { PlayerIntent } from '../adapters/input.ts';
+import type { GameContext } from '../game/context.ts';
+import { add, isFiniteVec3, scale, ZERO, type Vec3 } from '../math/vec3.ts';
 
 const MAX_PITCH = (89 * Math.PI) / 180;
 

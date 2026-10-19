@@ -1,7 +1,7 @@
-import { runActions } from '../actions/run-actions';
-import { playerHeight, type GameContext } from '../game/context';
-import { aabbIntersectsVerticalSegment } from '../math/aabb';
-import { unloadZones } from '../world/zones';
+import { runActions } from '../actions/run-actions.ts';
+import { playerHeight, type GameContext } from '../game/context.ts';
+import { aabbIntersectsVerticalSegment } from '../math/aabb.ts';
+import { unloadZones } from '../world/zones.ts';
 
 /**
  * Triggers AABB contra el eje de la cápsula del jugador. Dispara una vez por estadía: al entrar, o

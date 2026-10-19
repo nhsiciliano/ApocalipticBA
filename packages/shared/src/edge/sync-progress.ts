@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { ID_PATTERNS, NoteIdSchema } from '../scenario/ids';
+import { ID_PATTERNS, NoteIdSchema } from '../scenario/ids.ts';
 
 export const ProgressEntrySchema = z.strictObject({
   scenarioSlug: z.string().regex(ID_PATTERNS.scenarioSlug),

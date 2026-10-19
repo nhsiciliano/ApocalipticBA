@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTestGame, DT, scenarioWith } from '../test-utils/fixtures';
+import { createTestGame, DT, scenarioWith } from '../test-utils/fixtures.ts';
 
 const NEAR_NOTE = [100, 0, 0] as const;
 const NEAR_GATE = [100, 0, -9] as const;

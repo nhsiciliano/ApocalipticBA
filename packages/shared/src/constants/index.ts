@@ -1,2 +1,2 @@
-export * from './meteorite-palette';
-export * from './quality';
+export * from './meteorite-palette.ts';
+export * from './quality.ts';

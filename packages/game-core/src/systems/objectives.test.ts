@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTestGame } from '../test-utils/fixtures';
+import { createTestGame } from '../test-utils/fixtures.ts';
 
 function readFirstNote(t: ReturnType<typeof createTestGame>) {
   t.game.player.teleport([100, 0, 0]);

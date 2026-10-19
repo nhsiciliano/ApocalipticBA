@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { createEventBus } from './event-bus';
+import { createEventBus } from './event-bus.ts';
 
 interface TestEvents {
   ping: { n: number };

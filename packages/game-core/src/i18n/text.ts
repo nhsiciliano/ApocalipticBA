@@ -1,6 +1,6 @@
 import type { LocalizedText } from '@apocalipticba/shared';
 
-import type { Locale } from '../game/settings';
+import type { Locale } from '../game/settings.ts';
 
 /** Texto en el locale pedido; si falta en inglés, cae a es-AR (que siempre existe). */
 export function resolveText(text: LocalizedText, locale: Locale): string {

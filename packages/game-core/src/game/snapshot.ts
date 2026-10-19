@@ -6,7 +6,7 @@ import {
   type Scenario,
 } from '@apocalipticba/shared';
 
-import { isFiniteVec3, type Vec3 } from '../math/vec3';
+import { isFiniteVec3, type Vec3 } from '../math/vec3.ts';
 
 /** Estado serializable de un checkpoint. Es lo que se guarda en `save:<scenarioId>`. */
 export interface CheckpointSnapshot {

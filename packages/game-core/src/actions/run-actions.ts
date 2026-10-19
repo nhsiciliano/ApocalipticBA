@@ -1,9 +1,9 @@
 import type { Action, EncounterId } from '@apocalipticba/shared';
 
-import type { GameContext } from '../game/context';
-import { saveCheckpoint } from '../systems/checkpoints';
-import { advanceObjective } from '../systems/objectives';
-import { requestPreload, unloadZones } from '../world/zones';
+import type { GameContext } from '../game/context.ts';
+import { saveCheckpoint } from '../systems/checkpoints.ts';
+import { advanceObjective } from '../systems/objectives.ts';
+import { requestPreload, unloadZones } from '../world/zones.ts';
 
 /** Ejecuta en orden las acciones de un trigger, interactuable o encuentro. */
 export function runActions(ctx: GameContext, actions: readonly Action[]): void {
