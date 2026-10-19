@@ -10,7 +10,10 @@
     "ios": {
       "bundleIdentifier": "ar.com.apocalipticba.app",
       "supportsTablet": true,
-      "requireFullScreen": true
+      "requireFullScreen": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "ar.com.apocalipticba.app"
