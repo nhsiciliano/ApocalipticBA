@@ -2,21 +2,21 @@
 
 Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del avance.
 
-| Hito | Tema                 | Dificultad | Sesión   | Estado    | Commit                          | Fecha      |
-| ---- | -------------------- | ---------- | -------- | --------- | ------------------------------- | ---------- |
-| 0    | Bootstrap del repo   | Bajo       | low-dev  | Hecho     | `1c11fee`                       | 2026-10-18 |
-| 1    | Monorepo y tooling   | Bajo       | low-dev  | Hecho     | `24c84f6`, `0d4a39b`, `267e7d5` | 2026-10-18 |
-| 2    | `packages/shared`    | Bajo       | low-dev  | Hecho     | `29ca6d7`, `51caac9`, `264cca2` | 2026-10-18 |
-| 3    | `packages/game-core` | Medio      | mid-dev  | Hecho     | `a1973a3`…`2d572b0` (6 commits) | 2026-10-18 |
-| 4    | Supabase             | Medio      | mid-dev  | Hecho     | `f7ea514`…`025f422` (8 commits) | 2026-10-19 |
-| 5    | Landing              | Medio      | mid-dev  | Pendiente | —                               | —          |
-| 6    | App mobile base      | Alto       | high-dev | Pendiente | —                               | —          |
-| 7    | Spike de render      | Alto       | high-dev | Pendiente | —                               | —          |
-| 8    | Blockout en Blender  | Alto       | high-dev | Pendiente | —                               | —          |
-| 9    | Recorrido caminable  | Alto       | high-dev | Pendiente | —                               | —          |
-| 10   | Genex                | Medio      | mid-dev  | Pendiente | —                               | —          |
-| 11   | CI                   | Medio      | mid-dev  | Pendiente | —                               | —          |
-| —    | Cierre               | Bajo       | low-dev  | Pendiente | —                               | —          |
+| Hito | Tema                 | Dificultad | Sesión   | Estado    | Commit                                                                   | Fecha      |
+| ---- | -------------------- | ---------- | -------- | --------- | ------------------------------------------------------------------------ | ---------- |
+| 0    | Bootstrap del repo   | Bajo       | low-dev  | Hecho     | `1c11fee`                                                                | 2026-10-18 |
+| 1    | Monorepo y tooling   | Bajo       | low-dev  | Hecho     | `24c84f6`, `0d4a39b`, `267e7d5`                                          | 2026-10-18 |
+| 2    | `packages/shared`    | Bajo       | low-dev  | Hecho     | `29ca6d7`, `51caac9`, `264cca2`                                          | 2026-10-18 |
+| 3    | `packages/game-core` | Medio      | mid-dev  | Hecho     | `a1973a3`…`2d572b0` (6 commits)                                          | 2026-10-18 |
+| 4    | Supabase             | Medio      | mid-dev  | Hecho     | `f7ea514`…`025f422` (8 commits)                                          | 2026-10-19 |
+| 5    | Landing              | Medio      | mid-dev  | Pospuesto | — (decisión del usuario, 2026-10-19: la landing no es necesaria todavía) | —          |
+| 6    | App mobile base      | Alto       | high-dev | En curso  | —                                                                        | 2026-10-19 |
+| 7    | Spike de render      | Alto       | high-dev | Pendiente | —                                                                        | —          |
+| 8    | Blockout en Blender  | Alto       | high-dev | Pendiente | —                                                                        | —          |
+| 9    | Recorrido caminable  | Alto       | high-dev | Pendiente | —                                                                        | —          |
+| 10   | Genex                | Medio      | mid-dev  | Pendiente | —                                                                        | —          |
+| 11   | CI                   | Medio      | mid-dev  | Pendiente | —                                                                        | —          |
+| —    | Cierre               | Bajo       | low-dev  | Pendiente | —                                                                        | —          |
 
 ## Prerrequisitos de máquina
 
