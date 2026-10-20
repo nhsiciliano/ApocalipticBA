@@ -11,7 +11,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | 4    | Supabase             | Medio      | mid-dev  | Hecho     | `f7ea514`…`025f422` (8 commits)                                          | 2026-10-19 |
 | 5    | Landing              | Medio      | mid-dev  | Pospuesto | — (decisión del usuario, 2026-10-19: la landing no es necesaria todavía) | —          |
 | 6    | App mobile base      | Alto       | high-dev | Hecho     | `1a09ede`…`9f0345c` (9 commits)                                          | 2026-10-19 |
-| 7    | Spike de render      | Alto       | high-dev | Pendiente | —                                                                        | —          |
+| 7    | Spike de render      | Alto       | high-dev | En curso  | —                                                                        | 2026-10-20 |
 | 8    | Blockout en Blender  | Alto       | high-dev | Pendiente | —                                                                        | —          |
 | 9    | Recorrido caminable  | Alto       | high-dev | Pendiente | —                                                                        | —          |
 | 10   | Genex                | Medio      | mid-dev  | Pendiente | —                                                                        | —          |
@@ -45,6 +45,6 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 ## Decisiones pendientes del usuario
 
 - Bundle id / package name (propuesto `ar.com.apocalipticba.app`).
-- Firma local con Apple ID gratuito para medir en iPhone 13/14 real.
+- Firma local con Apple ID gratuito para medir en iPhone 13/14 real (requiere CocoaPods; el usuario decidió no instalarlo por ahora, 2026-10-20: el Hito 7 mide solo en Simulator).
 - Confirmación de costo del lote Genex.
 - Proyecto Supabase staging (opcional).
