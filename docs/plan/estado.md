@@ -11,7 +11,7 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | 4    | Supabase             | Medio      | mid-dev  | Hecho     | `f7ea514`…`025f422` (8 commits)                                          | 2026-10-19 |
 | 5    | Landing              | Medio      | mid-dev  | Pospuesto | — (decisión del usuario, 2026-10-19: la landing no es necesaria todavía) | —          |
 | 6    | App mobile base      | Alto       | high-dev | Hecho     | `1a09ede`…`9f0345c` (9 commits)                                          | 2026-10-19 |
-| 7    | Spike de render      | Alto       | high-dev | En curso  | —                                                                        | 2026-10-20 |
+| 7    | Spike de render      | Alto       | high-dev | Hecho     | `f05a119`…`b73fcc3` (5 commits)                                          | 2026-10-20 |
 | 8    | Blockout en Blender  | Alto       | high-dev | Pendiente | —                                                                        | —          |
 | 9    | Recorrido caminable  | Alto       | high-dev | Pendiente | —                                                                        | —          |
 | 10   | Genex                | Medio      | mid-dev  | Pendiente | —                                                                        | —          |
@@ -35,7 +35,11 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 
 - `shared`: actualizar `src/db/README.md` (ya no es placeholder: se regenera con `pnpm db:types` con el stack arriba) (Bajo, low-dev, junto al cierre).
 - `shared`: exportar `./fixtures` para que game-core no importe el fixture por ruta relativa (Bajo, low-dev, junto al cierre).
-- Hito 7: el plan B WebGL (expo-gl + `WebGPURenderer` con `forceWebGL`) compila y emite draws pero la pantalla queda negra salvo con flush bloqueante por frame (~950 ms/frame en Simulator). Hipótesis y alternativas en `docs/mobile/README.md` y ADR-008: `WebGLRenderer` clásico por alias aparte (dos copias de Three) o descartar el plan B si WebGPU rinde en dispositivo.
+- Render: plan B WebGL descartado para la Fase 0 (Hito 7, ADR-002). `GLCanvas` y los shims de expo-gl quedan en el código documentados; se reabre solo si expo-gl corrige `bufferSubData`/la presentación asíncrona.
+- Render: el heap de Hermes crece de 36 a 116 MB al remontar el `GameCanvas` 10 veces (sin leak nativo). Perfilar antes del Hito 9 o cuando haya iPhone real.
+- Assets: relevar KTX1/ASTC (sin WASM) para texturas antes del lote de Genex (Hito 10); los jpg de 1024 px ocupan ~5,6 MB de GPU cada uno.
+- Assets: `packages/assets/dist/spike/soldier*` es el `Soldier` de three (Mixamo) como placeholder; se reemplaza por el zombie de Genex y se borra al cerrar la Fase 0 (licencia Mixamo: no redistribuir como asset suelto).
+- Render: si el iPhone 13/14 no llega a 30 fps en `medium` con 30 zombies, probar skinning por compute + `InstancedMesh` (ejemplo `webgpu_skinning_instancing`) antes de tocar el backend.
 - Mobile: sin CocoaPods en la máquina, no hay builds locales (`expo run:ios`); todo pasa por EAS Build (plan free, ~8 min + cola). Las mediciones del Hito 7 en iPhone real requieren firma local, que sí necesita CocoaPods.
 - Hito 9: evaluar si la latencia de un step entre `commitMove` y triggers/pickups molesta; si sí, agregar `resolveMove` síncrono.
 - Fase 1: el botiquín se acumula pero no cura (falta API de curación).
