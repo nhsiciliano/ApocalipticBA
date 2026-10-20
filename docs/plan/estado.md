@@ -18,6 +18,23 @@ Actualizado por la sesión `planner` al cerrar cada hito. Fuente de verdad del a
 | 11   | CI                   | Medio      | mid-dev  | Pendiente | —                                                                        | —          |
 | —    | Cierre               | Bajo       | low-dev  | Pendiente | —                                                                        | —          |
 
+## Stand by (desde 2026-10-20)
+
+El proyecto queda **en pausa** con los Hitos 0–4, 6 y 7 hechos y el 5 pospuesto. Motivo: la Mac Air M1 no da abasto en disco y rendimiento (Simulator, Supabase en Docker, Blender, Metro). Se retoma en una Mac más potente. Todo lo necesario está en `origin/main`; nada local es irrecuperable.
+
+### Cómo reanudar en la máquina nueva
+
+1. Instalar Node 24.20.0 (`.nvmrc`), `npm i -g pnpm@12.14.0`, Xcode (con runtime de iOS Simulator), OrbStack o Docker, Blender 5.2.2 LTS, `gh` autenticado. Opcional pero recomendado: CocoaPods, para `expo run:ios` y firma local con Apple ID gratuito en el iPhone 13/14.
+2. `gh repo clone nhsiciliano/ApocalipticBA && cd ApocalipticBA && pnpm install`.
+3. `cp supabase/.env.example supabase/.env` y completar `RATE_LIMIT_SALT` (cualquier string aleatorio). `pnpm db:start` baja las imágenes de Supabase (~8 GB).
+4. `pnpm lint && pnpm typecheck && pnpm test && pnpm format` tienen que dar verde (Hito 7: 280 tests).
+5. Mobile: `pnpm --filter @apocalipticba/mobile exec eas login`, después `eas build --profile development-simulator --platform ios` (el proyecto ya está vinculado en `app.json`). Instalación y deep links en `docs/mobile/README.md`.
+6. Seguir por el **Hito 8** (blockout en Blender) según `docs/plan/fase-0.md`; la sesión `planner` arranca leyendo este archivo, `docs/prompt-base.md` (sección 8-bis) y los ADR.
+
+### Qué se borró de la máquina vieja
+
+Carpeta del proyecto (1,1 GB, casi todo `node_modules`), imágenes y volúmenes de Supabase en Docker, store y caché de pnpm, caché de npm, DerivedData de Xcode y el scratchpad de las sesiones. Nada de eso tenía estado propio: el único archivo local no versionado era `supabase/.env` (se regenera del `.env.example`).
+
 ## Prerrequisitos de máquina
 
 | Herramienta            | Estado (2026-10-18)                                                 |
