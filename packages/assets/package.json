@@ -1,0 +1,14 @@
+{
+  "name": "@apocalipticba/assets",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Assets del juego: raw/ (fuentes, ignorado por git) y dist/ (lo que consume la app)",
+  "type": "module",
+  "scripts": {
+    "spike:soldier": "node scripts/convert-soldier.mjs"
+  },
+  "devDependencies": {
+    "@gltf-transform/cli": "4.5.1"
+  }
+}

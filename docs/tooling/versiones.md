@@ -61,19 +61,19 @@ Verificadas el 2026-10-18 contra el registro de npm y la documentación oficial 
 
 ## Calidad y tooling
 
-| Paquete                | Versión                                  |
-| ---------------------- | ---------------------------------------- |
-| zod                    | 4.6.7                                    |
-| vitest                 | 5.0.5                                    |
-| eslint                 | 10.13.0                                  |
-| typescript-eslint      | 8.71.2                                   |
-| prettier               | 3.9.10                                   |
-| @eslint/js             | 10.0.1                                   |
-| eslint-config-prettier | 10.1.8                                   |
-| eslint-plugin-import-x | 4.17.1                                   |
-| globals                | 17.13.0                                  |
-| @types/node            | 24.19.2 (alineado a Node 24, no la 26.x) |
-| @gltf-transform/cli    | 4.5.1                                    |
+| Paquete                | Versión                                    |
+| ---------------------- | ------------------------------------------ |
+| zod                    | 4.6.7                                      |
+| vitest                 | 5.0.5                                      |
+| eslint                 | 10.13.0                                    |
+| typescript-eslint      | 8.71.2                                     |
+| prettier               | 3.9.10                                     |
+| @eslint/js             | 10.0.1                                     |
+| eslint-config-prettier | 10.1.8                                     |
+| eslint-plugin-import-x | 4.17.1                                     |
+| globals                | 17.13.0                                    |
+| @types/node            | 24.19.2 (alineado a Node 24, no la 26.x)   |
+| @gltf-transform/cli    | 4.5.1 (devDependency de `packages/assets`) |
 
 Nota pnpm 12: `.npmrc` solo se usa para auth/registry. `engineStrict`, `autoInstallPeers` y `allowBuilds` viven en `pnpm-workspace.yaml`. Todo paquete con script de build (esbuild, sharp, etc.) necesita una entrada explícita en `allowBuilds` o la instalación falla. Hoy están listados en `false` (no se ejecutan) `unrs-resolver`, y `dtrace-provider` y `protobufjs`, que arrastra `eas-cli`.
 
@@ -88,3 +88,5 @@ Nota pnpm 12: `.npmrc` solo se usa para auth/registry. `engineStrict`, `autoInst
 - No ejecuta WebAssembly: sin KTX2 (Basis), sin meshopt, sin físicas WASM. Draco solo en modo asm.js.
 - `GLTFLoader` no puede crear `Blob` desde `ArrayBuffer`: los GLB con texturas embebidas no cargan. Exportar `.gltf` + `.bin` + texturas externas.
 - No provee `TextDecoder`: usar `fast-text-encoding` como primer import.
+- No provee `ProgressEvent` ni `Worker`: `FileLoader` de Three lo instancia al reportar progreso (stub en `src/polyfills.ts`); `DRACOLoader` y `KTX2Loader` dependen de Web Workers y no corren sin un loader propio.
+- `fetch` de RN 0.88 expone `response.body.getReader()`, pero el `ArrayBuffer` que `FileLoader` arma desde ese stream sale truncado. Para `.bin` y texturas se usa `fetch(url).arrayBuffer()` directo (ver `apps/mobile/src/spike/zombies/loadModel.ts`).
