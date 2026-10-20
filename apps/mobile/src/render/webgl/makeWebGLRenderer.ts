@@ -77,6 +77,32 @@ export function patchExpoGLContext(gl: ExpoWebGLRenderingContext): ExpoWebGLRend
   wrap('clearBufferfv', Float32Array);
   wrap('clearBufferiv', Int32Array);
   wrap('clearBufferuiv', Uint32Array);
+
+  // expo-gl 58 ignora `srcOffset` y `length` de `bufferSubData(target, dstOffset, data, srcOffset,
+  // length)` (WebGL 2) y sube el typed array entero (common/EXWebGLMethods.cpp). El WebGLBackend
+  // de Three actualiza sus uniform buffers con esa forma: el bloque se desborda y el driver
+  // descarta la llamada. Se recorta el rango en JS. No alcanza para que el plan B presente
+  // (docs/spikes/render.md), pero es una incompatibilidad real y queda corregida.
+  const bufferSubData: (target: number, dstByteOffset: number, data: ArrayBufferView) => void =
+    gl.bufferSubData.bind(gl);
+  target.bufferSubData = (
+    bufferTarget: number,
+    dstByteOffset: number,
+    data: ArrayBufferView | ArrayBuffer,
+    srcOffset?: number,
+    length?: number,
+  ) => {
+    if (!ArrayBuffer.isView(data) || srcOffset === undefined) {
+      bufferSubData(bufferTarget, dstByteOffset, data as ArrayBufferView);
+      return;
+    }
+    const view = data as unknown as {
+      slice: (a: number, b?: number) => ArrayBufferView;
+      length: number;
+    };
+    const end = length === undefined || length === 0 ? view.length : srcOffset + length;
+    bufferSubData(bufferTarget, dstByteOffset, view.slice(srcOffset, end));
+  };
   target[PATCHED] = true;
   return gl;
 }
