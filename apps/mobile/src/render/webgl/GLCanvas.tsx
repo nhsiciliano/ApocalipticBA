@@ -8,6 +8,8 @@ import { ExpoGLCanvas, makeWebGLRenderer } from './makeWebGLRenderer.ts';
 export interface GLCanvasProps {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
+  /** No aplica: expo-gl fija el drawing buffer al tamaño de la vista. Se acepta por simetría. */
+  renderScale?: number;
 }
 
 /**

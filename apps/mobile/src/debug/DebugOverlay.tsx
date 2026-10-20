@@ -11,7 +11,10 @@ export interface DebugOverlayProps {
   fallback?: boolean;
 }
 
-/** Métricas de render en la esquina: fps, frame time, draw calls, triángulos, backend y calidad. */
+/**
+ * Métricas de render en la esquina: fps promedio y p1 (1 % peor), frame time promedio y p99,
+ * draw calls, triángulos, heap de Hermes, backend activo y calidad.
+ */
 export function DebugOverlay({ backend, fallback = false }: DebugOverlayProps) {
   const stats = useRenderStats();
   const quality = useSettings((s) => s.quality);
@@ -19,7 +22,10 @@ export function DebugOverlay({ backend, fallback = false }: DebugOverlayProps) {
   return (
     <View pointerEvents="none" style={styles.box}>
       <Text style={styles.line}>
-        {stats.fps} fps · {stats.frameTimeMs.toFixed(1)} ms
+        {stats.fps} fps · p1 {stats.fpsP1} fps
+      </Text>
+      <Text style={styles.line}>
+        {stats.frameTimeMs.toFixed(1)} ms · p99 {stats.frameTimeP99Ms.toFixed(1)} ms
       </Text>
       <Text style={styles.line}>
         {stats.drawCalls} draw calls · {stats.triangles} tris
@@ -28,7 +34,10 @@ export function DebugOverlay({ backend, fallback = false }: DebugOverlayProps) {
         {RENDER_BACKEND_LABELS[backend]}
         {fallback ? ' (fallback)' : ''}
       </Text>
-      <Text style={styles.line}>calidad {quality}</Text>
+      <Text style={styles.line}>
+        calidad {quality}
+        {stats.jsHeapMb === null ? '' : ` · heap JS ${stats.jsHeapMb.toFixed(1)} MB`}
+      </Text>
     </View>
   );
 }

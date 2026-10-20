@@ -15,13 +15,16 @@ import { ReactNativeCanvas, makeWebGPURenderer } from './makeWebGPURenderer.ts';
 export interface FiberCanvasProps {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
+  /** Escala del drawing buffer respecto de los píxeles físicos (`QUALITY_LEVELS.renderScale`). */
+  renderScale?: number;
 }
 
 /**
  * R3F sobre react-native-webgpu. El root se monta en el primer layout con tamaño (el contexto
- * se mide al pedirlo) y se desmonta al salir, descartando el renderer.
+ * se mide al pedirlo) y se desmonta al salir, descartando el renderer. `renderScale` reduce el
+ * drawing buffer (la vista lo estira); cambiarlo requiere remontar el canvas.
  */
-export function FiberCanvas({ children, style }: FiberCanvasProps) {
+export function FiberCanvas({ children, style, renderScale = 1 }: FiberCanvasProps) {
   const canvasRef = useRef<CanvasRef>(null);
   const rootRef = useRef<FiberRoot | null>(null);
   const childrenRef = useRef(children);
@@ -33,9 +36,9 @@ export function FiberCanvas({ children, style }: FiberCanvasProps) {
     if (!context) return;
 
     const canvas = new ReactNativeCanvas(context.canvas as unknown as NativeCanvas);
-    const scale = PixelRatio.get();
-    canvas.width = Math.round(width * scale);
-    canvas.height = Math.round(height * scale);
+    const scale = PixelRatio.get() * renderScale;
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
 
     rootRef.current = mountFiberRoot({
       canvas,

@@ -1,6 +1,6 @@
-import { createRoot, unmountComponentAtNode } from '@react-three/fiber';
+import { addAfterEffect, addEffect, createRoot, unmountComponentAtNode } from '@react-three/fiber';
 import type { ReactNode } from 'react';
-import type { Camera, Scene, WebGPURenderer } from 'three/webgpu';
+import type { WebGPURenderer } from 'three/webgpu';
 
 import { ensureThreeCatalogue } from './fiber.ts';
 
@@ -40,13 +40,25 @@ export interface FiberRoot {
 /**
  * Monta un root de R3F sobre una superficie nativa. El renderer se entrega por factory para
  * que R3F sea su dueño y lo descarte en `unmount` (evita el leak al remontar, issue #445 de
- * react-native-webgpu). `present()` se engancha después de cada `render` del loop de R3F.
+ * react-native-webgpu).
+ *
+ * R3F corre los efectos globales antes y después de dibujar todos los roots de cada frame.
+ * Antes se resetea `renderer.info` (Three lo reseteaba desde su propio rAF y el overlay leía
+ * ceros); después se presenta el frame una sola vez, aunque un `RenderPipeline` llame a
+ * `renderer.render` varias veces (pase de escena, RTT y quad de salida).
  */
 export function mountFiberRoot(surface: FiberSurface): FiberRoot {
   ensureThreeCatalogue();
   const canvas = surface.canvas as unknown as HTMLCanvasElement;
   const root = createRoot(canvas);
   let renderer: WebGPURenderer | undefined;
+
+  const removeBeforeEffect = addEffect(() => {
+    renderer?.info.reset();
+  });
+  const removeAfterEffect = addAfterEffect(() => {
+    if (renderer) surface.present();
+  });
 
   void root.configure({
     size: { top: 0, left: 0, width: surface.width, height: surface.height },
@@ -55,16 +67,7 @@ export function mountFiberRoot(surface: FiberSurface): FiberRoot {
     gl: async () => {
       renderer = surface.createRenderer();
       await renderer.init();
-      // Three resetea `info` en su propio rAF (que corre aunque el loop sea de R3F), así que
-      // los contadores quedaban en cero al leerlos. Se resetean acá, justo antes de dibujar.
       renderer.info.autoReset = false;
-      const renderFrame = renderer.render.bind(renderer);
-      renderer.render = (scene: Scene, camera: Camera) => {
-        renderer?.info.reset();
-        const result = renderFrame(scene, camera);
-        surface.present();
-        return result;
-      };
       return renderer;
     },
   });
@@ -74,6 +77,8 @@ export function mountFiberRoot(surface: FiberSurface): FiberRoot {
       root.render(children);
     },
     unmount: () => {
+      removeBeforeEffect();
+      removeAfterEffect();
       unmountComponentAtNode(canvas);
       renderer = undefined;
     },

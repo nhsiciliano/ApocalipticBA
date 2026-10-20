@@ -12,13 +12,15 @@ export interface GameCanvasProps {
   /** Escena R3F (elementos de `three/webgpu`). */
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
+  /** Escala del drawing buffer (`QUALITY_LEVELS.renderScale`); solo el backend WebGPU la aplica. */
+  renderScale?: number;
 }
 
 /**
  * Único punto de contacto de la app con el renderer (ADR-002). Elige el backend según
- * `settings.renderBackend` y remonta el canvas (por `key`) cuando cambia.
+ * `settings.renderBackend` y remonta el canvas (por `key`) cuando cambia el backend o la escala.
  */
-export function GameCanvas({ children, style }: GameCanvasProps) {
+export function GameCanvas({ children, style, renderScale = 1 }: GameCanvasProps) {
   const preferred = useSettings((s) => s.renderBackend);
   const debugOverlay = useSettings((s) => s.debugOverlay);
   const backend = useMemo(
@@ -29,7 +31,11 @@ export function GameCanvas({ children, style }: GameCanvasProps) {
 
   return (
     <View style={[styles.root, style]}>
-      <Surface key={backend} style={StyleSheet.absoluteFill}>
+      <Surface
+        key={`${backend}:${renderScale}`}
+        style={StyleSheet.absoluteFill}
+        renderScale={renderScale}
+      >
         {children}
         {debugOverlay ? <StatsSampler /> : null}
       </Surface>
