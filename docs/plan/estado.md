@@ -55,6 +55,7 @@ Carpeta del proyecto (1,1 GB, casi todo `node_modules`), imágenes y volúmenes 
 - Render: plan B WebGL descartado para la Fase 0 (Hito 7, ADR-002). `GLCanvas` y los shims de expo-gl quedan en el código documentados; se reabre solo si expo-gl corrige `bufferSubData`/la presentación asíncrona.
 - Render: el heap de Hermes crece de 36 a 116 MB al remontar el `GameCanvas` 10 veces (sin leak nativo). Perfilar antes del Hito 9 o cuando haya iPhone real.
 - Assets: relevar KTX1/ASTC (sin WASM) para texturas antes del lote de Genex (Hito 10); los jpg de 1024 px ocupan ~5,6 MB de GPU cada uno.
+- Assets: `packages/assets/package.json` declara `spike:soldier` → `scripts/convert-soldier.mjs`, pero el script no se commiteó; los comandos de conversión están en `packages/assets/dist/spike/README.md` (Bajo, low-dev, junto al cierre).
 - Assets: `packages/assets/dist/spike/soldier*` es el `Soldier` de three (Mixamo) como placeholder; se reemplaza por el zombie de Genex y se borra al cerrar la Fase 0 (licencia Mixamo: no redistribuir como asset suelto).
 - Render: si el iPhone 13/14 no llega a 30 fps en `medium` con 30 zombies, probar skinning por compute + `InstancedMesh` (ejemplo `webgpu_skinning_instancing`) antes de tocar el backend.
 - Mobile: sin CocoaPods en la máquina, no hay builds locales (`expo run:ios`); todo pasa por EAS Build (plan free, ~8 min + cola). Las mediciones del Hito 7 en iPhone real requieren firma local, que sí necesita CocoaPods.
