@@ -3,6 +3,8 @@ node_modules/
 .pnpm-store/
 .turbo/
 dist/
+# La app consume packages/assets/dist: se versiona (blockout, placeholders del spike).
+!packages/assets/dist/
 build/
 coverage/
 *.tsbuildinfo
