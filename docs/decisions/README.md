@@ -4,16 +4,16 @@ Registro de las decisiones técnicas relevantes del proyecto, en formato MADR co
 
 ## Índice
 
-| ADR                                                  | Título                                   | Estado                        |
-| ---------------------------------------------------- | ---------------------------------------- | ----------------------------- |
-| [ADR-001](ADR-001-monorepo-pnpm-turborepo.md)        | Monorepo con pnpm workspaces y Turborepo | Aceptado                      |
-| [ADR-002](ADR-002-render-webgpu-con-plan-b.md)       | Render con WebGPU y plan B en WebGL      | Propuesto, pendiente de spike |
-| [ADR-003](ADR-003-supabase-backend.md)               | Supabase como backend                    | Aceptado                      |
-| [ADR-004](ADR-004-blender-como-editor-de-niveles.md) | Blender como editor de niveles           | Aceptado                      |
-| [ADR-005](ADR-005-cel-shading-tsl.md)                | Cel-shading con materiales TSL           | Aceptado                      |
-| [ADR-006](ADR-006-contrato-host-core.md)             | Contrato entre el host y `game-core`     | Aceptado                      |
-| [ADR-007](ADR-007-edge-functions-y-shared.md)        | Edge Functions que importan `shared`     | Aceptado                      |
-| [ADR-008](ADR-008-estructura-app-mobile.md)          | Estructura de la app mobile              | Aceptado                      |
+| ADR                                                  | Título                                   | Estado                                                                 |
+| ---------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------- |
+| [ADR-001](ADR-001-monorepo-pnpm-turborepo.md)        | Monorepo con pnpm workspaces y Turborepo | Aceptado                                                               |
+| [ADR-002](ADR-002-render-webgpu-con-plan-b.md)       | Render con WebGPU y plan B en WebGL      | Aceptado: WebGPU en iOS, plan B descartado (Hito 7), Android pendiente |
+| [ADR-003](ADR-003-supabase-backend.md)               | Supabase como backend                    | Aceptado                                                               |
+| [ADR-004](ADR-004-blender-como-editor-de-niveles.md) | Blender como editor de niveles           | Aceptado                                                               |
+| [ADR-005](ADR-005-cel-shading-tsl.md)                | Cel-shading con materiales TSL           | Aceptado                                                               |
+| [ADR-006](ADR-006-contrato-host-core.md)             | Contrato entre el host y `game-core`     | Aceptado                                                               |
+| [ADR-007](ADR-007-edge-functions-y-shared.md)        | Edge Functions que importan `shared`     | Aceptado                                                               |
+| [ADR-008](ADR-008-estructura-app-mobile.md)          | Estructura de la app mobile              | Aceptado                                                               |
 
 ## Plantilla
 

@@ -1,6 +1,6 @@
 # ADR-002 — Render con WebGPU y plan B en WebGL
 
-- **Estado:** Propuesto, pendiente de spike (Hito 7)
+- **Estado:** Aceptado para iOS con WebGPU (actualización del 2026-10-20); plan B WebGL descartado para la Fase 0; Android pendiente
 - **Fecha:** 2026-10-18
 
 ## Contexto
@@ -37,3 +37,13 @@ La decisión final (WebGPU, plan B o híbrido por dispositivo) se toma al cerrar
 - **Solo `expo-gl` + `WebGLRenderer`:** madura y estable, pero cierra la puerta a TSL con compute y a lo que viene en WebGPU; queda como plan B.
 - **Motor nativo (Unity, Godot):** descarta el stack TypeScript compartido con la landing, `game-core` y `shared`.
 - **Esperar a que el ecosistema madure:** bloquea el prototipo; el spike acota el riesgo con mediciones.
+
+## Actualización 2026-10-20 (cierre del Hito 7)
+
+Resultado del spike (`docs/spikes/render.md`), medido solo en el Simulator (iPhone 17, iOS 27.0), sin iPhone real porque no hay CocoaPods ni firma local; las cifras no valen para decidir rendimiento, sí para lo funcional.
+
+- **Decisión para iOS: WebGPU** (`react-native-webgpu` 0.16.1 + `WebGPURenderer` de three 0.186.1 + R3F 9.8.2). Toda la escena de estrés funciona: 30 `SkinnedMesh` clonados con `AnimationMixer` propio, toon TSL con gradient map, inverted hull, Sobel a media resolución con MRT y bloom selectivo por `RenderPipeline`, `.gltf` externo con texturas por `createImageBitmap` nativo, `KHR_mesh_quantization`. Se confirma o se revisa con la primera medición en dispositivo.
+- **Plan B WebGL: descartado para la Fase 0.** El `WebGLBackend` de Three sobre expo-gl compila los materiales TSL y emite los draws, pero no presenta en el modo asíncrono de expo-gl. Se encontraron y corrigieron dos incompatibilidades (typed arrays en `clearBuffer*`; `bufferSubData` ignora `srcOffset`/`length`) y se verificó que expo-gl sí presenta sin Three; la causa restante no apareció en el tiempo asignado. El `WebGLRenderer` clásico no es un plan B válido porque no corre TSL (contradice ADR-005). `GLCanvas` y los shims quedan en el código, documentados, por si expo-gl cambia.
+- Premisas corregidas respecto del texto original: R3F no necesita patch (Metro lo resuelve, ADR-008); el plan B era `WebGPURenderer` con `forceWebGL`, no `WebGLRenderer`; `PostProcessing` pasó a llamarse `RenderPipeline`.
+- **Android: pendiente, no medido.** Sin dispositivo no hay datos del backend Vulkan.
+- Condición abierta: si en un iPhone 13/14 la escena de 30 zombies no llega a 30 fps en `medium`, el primer recurso es reducir objetos skinned (instancing por compute, menos hulls, LOD), no volver a WebGL.

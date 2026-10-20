@@ -63,6 +63,18 @@ pnpm exec expo export --platform ios --output-dir /tmp/apocalipticba-export   # 
 pnpm exec expo prebuild --platform ios --no-install                            # plugins (genera ios/, ignorado por git)
 ```
 
+## Spike de render (`app/spike.tsx`)
+
+La ruta `/spike` monta `src/spike/SpikeScene.tsx` dentro del `GameCanvas`: piso de rombos, niebla plana, fragmentos de meteorito con glow, cámara en órbita y hasta 30 zombies skinned (`Soldier` de three, en `packages/assets/dist/spike/`). Los botones del HUD cambian la cantidad de zombies, rotan la calidad, lanzan una medición de 10 s o remontan el canvas 10 veces. Por deep link:
+
+```sh
+xcrun simctl openurl booted "apocalipticba://spike?zombies=30&quality=high&backend=webgpu&run=10"   # mide 10 s y loguea [spike-sample] {...}
+xcrun simctl openurl booted "apocalipticba://spike?zombies=30&quality=medium&model=quantized"       # variante KHR_mesh_quantization
+xcrun simctl openurl booted "apocalipticba://spike?zombies=30&quality=medium&remount=10"            # prueba de leak: [spike-remount] {...}
+```
+
+Los JSON salen por la consola del dev client (aparecen en la terminal de Metro como `LOG [spike-sample] ...`). Resultados, checklist y decisión: [`docs/spikes/render.md`](../spikes/render.md).
+
 ## Cómo se construye e instala el build
 
 El login lo hace cada persona con su cuenta de Expo (nunca se guardan credenciales en el repo). El proyecto ya está vinculado (`extra.eas.projectId` en `app.json`, cuenta `nhsiciliano`).
@@ -96,9 +108,9 @@ Lo que se encontró con el plan B, en orden:
 1. expo-gl solo acepta typed arrays en `clearBuffer{fv,iv,uiv}` y el `WebGLBackend` de Three pasa arrays comunes: resuelto con `patchExpoGLContext` (`src/render/webgl/makeWebGLRenderer.ts`).
 2. Three evalúa `texture.image instanceof ImageBitmap` por frame y Hermes no define `ImageBitmap`: resuelto con un stub en `src/polyfills.ts`.
 3. Con eso el backend compila los materiales TSL a GLSL y emite los draws (el overlay cuenta 2 draw calls y 13 triángulos), **pero la pantalla queda negra**. Si se fuerza un flush bloqueante por frame (`gl.flushEXP()` antes de `endFrameEXP()`, o el logging `GET_ERRORS` de expo-gl) el cubo se ve correcto, a costa de ~950 ms por frame en el Simulator. Hipótesis para el Hito 7: el lote de comandos de expo-gl se procesa en el hilo GL más lento de lo que R3F lo alimenta (la cola crece y nunca presenta), o el pase de salida de Three (render target interno + triángulo a pantalla) interactúa mal con el framebuffer por defecto de expo-gl. `fenceSync`/`clientWaitSync` no están implementadas en expo-gl, pero este camino no las usa.
-4. Si el Hito 7 no lo resuelve, la alternativa es `WebGLRenderer` clásico (`three/build/three.module.js` por un alias aparte, aceptando dos copias de Three y materiales duplicados), o descartar el plan B si WebGPU rinde en dispositivo.
+4. Hito 7: expo-gl presenta sin Three (clear + `endFrameEXP` a 60 fps), las ~100 llamadas GL por frame del backend existen todas en expo-gl, y se corrigió una tercera incompatibilidad (`bufferSubData` ignora `srcOffset`/`length`; shim en `makeWebGLRenderer.ts`). Aun así no presenta, y cada llamada síncrona de expo-gl (`getError`, `getParameter`, `flushEXP`) tarda más de 1 s. El `WebGLRenderer` clásico no sirve de plan B porque no corre TSL. Decisión: WebGPU en iOS, plan B descartado para la Fase 0 (ADR-002).
 
 ## Pendiente
 
-- Hito 7: resolver o descartar el plan B (punto 3 de arriba) y medir en dispositivo real; las métricas del Simulator no valen para decidir.
+- Medir en iPhone real cuando haya firma local (CocoaPods o Xcode con Apple ID); las métricas del Simulator no valen para decidir.
 - Android no está medido; `react-native-webgpu` sube `minSdk` a 26 por plugin.
