@@ -15,6 +15,8 @@ export const ROUTES = {
   profile: '/profile',
   settings: '/settings',
   login: '/login',
+  /** Escena de estrés del Hito 7 (`docs/spikes/render.md`). */
+  spike: '/spike',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
